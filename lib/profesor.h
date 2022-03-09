@@ -1,8 +1,10 @@
-//
-// Created by aleja on 09/03/2022.
-//
+#ifndef profesor_H
+#define profesor_H
 
-#ifndef MP2022_PROFESOR_H
-#define MP2022_PROFESOR_H
 
-#endif //MP2022_PROFESOR_H
+void perfil_profesor_menu_alum();
+void perfil_profesor_listados();
+void perfil_profesor_menu();
+
+
+#endif;
