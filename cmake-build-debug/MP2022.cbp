@@ -76,6 +76,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/aleja/Desktop/MP2022/administrador.c">
+			<Option target="MP2022"/>
+		</Unit>
+		<Unit filename="C:/Users/aleja/Desktop/MP2022/administrador.h">
+			<Option target="MP2022"/>
+		</Unit>
 		<Unit filename="C:/Users/aleja/Desktop/MP2022/core.c">
 			<Option target="MP2022"/>
 		</Unit>
@@ -83,6 +89,12 @@
 			<Option target="MP2022"/>
 		</Unit>
 		<Unit filename="C:/Users/aleja/Desktop/MP2022/main.c">
+			<Option target="MP2022"/>
+		</Unit>
+		<Unit filename="C:/Users/aleja/Desktop/MP2022/profesor.c">
+			<Option target="MP2022"/>
+		</Unit>
+		<Unit filename="C:/Users/aleja/Desktop/MP2022/profesor.h">
 			<Option target="MP2022"/>
 		</Unit>
 		<Unit filename="C:/Users/aleja/Desktop/MP2022/CMakeLists.txt">

@@ -128,6 +128,30 @@ MP2022/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\MP2022.dir\build.make CMakeFiles/MP2022.dir/build
 .PHONY : MP2022/fast
 
+administrador.obj: administrador.c.obj
+.PHONY : administrador.obj
+
+# target to build an object file
+administrador.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MP2022.dir\build.make CMakeFiles/MP2022.dir/administrador.c.obj
+.PHONY : administrador.c.obj
+
+administrador.i: administrador.c.i
+.PHONY : administrador.i
+
+# target to preprocess a source file
+administrador.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MP2022.dir\build.make CMakeFiles/MP2022.dir/administrador.c.i
+.PHONY : administrador.c.i
+
+administrador.s: administrador.c.s
+.PHONY : administrador.s
+
+# target to generate assembly for a file
+administrador.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MP2022.dir\build.make CMakeFiles/MP2022.dir/administrador.c.s
+.PHONY : administrador.c.s
+
 core.obj: core.c.obj
 .PHONY : core.obj
 
@@ -176,6 +200,30 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\MP2022.dir\build.make CMakeFiles/MP2022.dir/main.c.s
 .PHONY : main.c.s
 
+profesor.obj: profesor.c.obj
+.PHONY : profesor.obj
+
+# target to build an object file
+profesor.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MP2022.dir\build.make CMakeFiles/MP2022.dir/profesor.c.obj
+.PHONY : profesor.c.obj
+
+profesor.i: profesor.c.i
+.PHONY : profesor.i
+
+# target to preprocess a source file
+profesor.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MP2022.dir\build.make CMakeFiles/MP2022.dir/profesor.c.i
+.PHONY : profesor.c.i
+
+profesor.s: profesor.c.s
+.PHONY : profesor.s
+
+# target to generate assembly for a file
+profesor.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MP2022.dir\build.make CMakeFiles/MP2022.dir/profesor.c.s
+.PHONY : profesor.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -185,12 +233,18 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... MP2022
+	@echo ... administrador.obj
+	@echo ... administrador.i
+	@echo ... administrador.s
 	@echo ... core.obj
 	@echo ... core.i
 	@echo ... core.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... profesor.obj
+	@echo ... profesor.i
+	@echo ... profesor.s
 .PHONY : help
 
 

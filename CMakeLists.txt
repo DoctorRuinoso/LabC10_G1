@@ -3,4 +3,4 @@ project(MP2022 C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(MP2022 main.c core.h core.c)
+add_executable(MP2022 main.c core.h core.c profesor.h profesor.c administrador.c administrador.h)

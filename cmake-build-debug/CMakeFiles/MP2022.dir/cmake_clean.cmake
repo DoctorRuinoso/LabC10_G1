@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/MP2022.dir/administrador.c.obj"
   "CMakeFiles/MP2022.dir/core.c.obj"
   "CMakeFiles/MP2022.dir/main.c.obj"
+  "CMakeFiles/MP2022.dir/profesor.c.obj"
   "MP2022.exe"
   "MP2022.exe.manifest"
   "MP2022.pdb"

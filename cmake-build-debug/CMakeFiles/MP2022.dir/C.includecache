@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/aleja/Desktop/MP2022/administrador.c
+core.h
+C:/Users/aleja/Desktop/MP2022/core.h
+administrador.h
+C:/Users/aleja/Desktop/MP2022/administrador.h
+
+C:/Users/aleja/Desktop/MP2022/administrador.h
+
+C:/Users/aleja/Desktop/MP2022/core.h
+
+C:/Users/aleja/Desktop/MP2022/profesor.c
+core.h
+C:/Users/aleja/Desktop/MP2022/core.h
+profesor.h
+C:/Users/aleja/Desktop/MP2022/profesor.h
+
+C:/Users/aleja/Desktop/MP2022/profesor.h
+

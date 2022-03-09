@@ -8,8 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "C:/Users/aleja/Desktop/MP2022/administrador.c" "C:/Users/aleja/Desktop/MP2022/cmake-build-debug/CMakeFiles/MP2022.dir/administrador.c.obj"
   "C:/Users/aleja/Desktop/MP2022/core.c" "C:/Users/aleja/Desktop/MP2022/cmake-build-debug/CMakeFiles/MP2022.dir/core.c.obj"
   "C:/Users/aleja/Desktop/MP2022/main.c" "C:/Users/aleja/Desktop/MP2022/cmake-build-debug/CMakeFiles/MP2022.dir/main.c.obj"
+  "C:/Users/aleja/Desktop/MP2022/profesor.c" "C:/Users/aleja/Desktop/MP2022/cmake-build-debug/CMakeFiles/MP2022.dir/profesor.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
