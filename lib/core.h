@@ -13,10 +13,15 @@
 //Structs
 
 typedef struct {
-    unsigned max_matriculas;
+
     int defaultBugdet;
-    unsigned max_usuarios;
-    unsigned max_alumnos;
+    unsigned usuarios_counter;
+    unsigned alumnos_counter;
+    unsigned materias_counter;
+    unsigned matriculas_counter;
+    unsigned calificaciones_counter;
+    unsigned horarios_counter;
+
 }config_log;
 
 typedef struct{
