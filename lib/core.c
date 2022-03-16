@@ -1,18 +1,18 @@
 #include "core.h"
 //
 //Llama a los restauradores de cada struct (fisica -> RAM)
-void Core_data_recovery(){
-    Core_config_restorer();
-    Core_usuarios_recovery();
-    Core_alumnos_recovery();
-    Core_matriculas_recovery();
-    Core_materias_recovery();
-    Core_calificaciones_recovery();
-    Core_horarios_recovery();
+void core_data_recovery(){
+    core_config_restorer();
+    core_usuarios_recovery();
+    core_alumnos_recovery();
+    core_matriculas_recovery();
+    core_materias_recovery();
+    core_calificaciones_recovery();
+    core_horarios_recovery();
 }
 
 //Recupera las instancias de los usuarios
-void Core_usuarios_recovery(){
+void core_usuarios_recovery(){
 
     assert(configuration.usuarios_counter!=0 && "No se ha cargado de forma correcta el archivo de configuracion");
     USUARIOS_FILE=fopen("data/usuarios.txt", "r");
@@ -28,12 +28,12 @@ void Core_usuarios_recovery(){
     fclose(USUARIOS_FILE);
 }
 
-void Core_alumnos_recovery(){
+void core_alumnos_recovery(){
 
     assert(configuration.alumnos_counter!=0 && "No se ha cargado de forma correcta el archivo de configuracion");
     ALUMNOS_FILE=fopen("data/alumnos.txt", "r");
     alumno = malloc(sizeof(alumnos)*configuration.alumnos_counter);
-    for (int i = 0; i < configuration.usuarios_counter; ++i) {
+    for (int i = 0; i < configuration.alumnos_counter; ++i) {
         fscanf(ALUMNOS_FILE,"%s",alumno[i].id);
         fscanf(ALUMNOS_FILE,"%s",alumno[i].nombre);
         fscanf(ALUMNOS_FILE,"%s",alumno[i].direc);
@@ -44,7 +44,7 @@ void Core_alumnos_recovery(){
     fclose(ALUMNOS_FILE);
 }
 
-void Core_materias_recovery(){
+void core_materias_recovery(){
 
     assert(configuration.materias_counter!=0 && "No se ha cargado de forma correcta el archivo de configuracion");
     MATERIAS_FILE=fopen("data/materias.txt", "r");
@@ -58,7 +58,7 @@ void Core_materias_recovery(){
 }
 
 
-void Core_matriculas_recovery(){
+void core_matriculas_recovery(){
 
     assert(configuration.matriculas_counter!=0 && "No se ha cargado de forma correcta el archivo de configuracion");
     MATRICULAS_FILE=fopen("data/matriculas.txt", "r");
@@ -70,10 +70,10 @@ void Core_matriculas_recovery(){
     fclose(MATRICULAS_FILE);
 }
 
-void Core_calificaciones_recovery(){
+void core_calificaciones_recovery(){
 
     assert(configuration.calificaciones_counter!=0 && "No se ha cargado de forma correcta el archivo de configuracion");
-    CALIFICACIONES_FILE=fopen("data/usuarios.txt", "r");
+    CALIFICACIONES_FILE=fopen("data/calificaciones.txt", "r");
     nota = malloc(sizeof(calificaciones)*configuration.calificaciones_counter);
     for (int i = 0; i < configuration.usuarios_counter; ++i) {
         fscanf(CALIFICACIONES_FILE,"%s",nota[i].fecha);
@@ -86,7 +86,7 @@ void Core_calificaciones_recovery(){
     fclose(CALIFICACIONES_FILE);
 }
 
-void Core_horarios_recovery(){
+void core_horarios_recovery(){
 
     assert(configuration.horarios_counter!=0 && "No se ha cargado de forma correcta el archivo de configuracion");
     HORARIOS_FILE=fopen("data/horarios.txt", "r");

@@ -14,7 +14,6 @@
 
 typedef struct {
 
-    int defaultBugdet;
     unsigned usuarios_counter;
     unsigned alumnos_counter;
     unsigned materias_counter;
@@ -70,6 +69,7 @@ typedef struct{
 }horarios;
 
 //Globales de confg
+
 FILE *USUARIOS_FILE;
 FILE *ALUMNOS_FILE;
 FILE *MATERIAS_FILE;
@@ -78,12 +78,27 @@ FILE *CALIFICACIONES_FILE;
 FILE *HORARIOS_FILE;
 
 //STRUCTS
+
+config_log configuration;
 usuarios *usuario;
 alumnos *alumno;
 materias *materia;
 matriculas *matricula;
 calificaciones *nota;
 horarios *horario;
+
+
+//Cabeceras de Funcion
+
+void core_data_recovery();
+void core_usuarios_recovery();
+void core_alumnos_recovery();
+void core_materias_recovery();
+void core_matriculas_recovery();
+void core_calificaciones_recovery();
+void core_horarios_recovery();
+
+//Crear Una funcion que contabilice el vacio de las eliminadas
 
 
 
