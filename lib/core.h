@@ -31,7 +31,7 @@ typedef struct{
     char name_tag[5];
     char password[8];
 
-}usuario;
+}usuarios;
 
 typedef struct{
     char id[6];
@@ -40,18 +40,18 @@ typedef struct{
     char local[5];
     char curso[30];
     char grupo[10];	
-}alumno;
+}alumnos;
 
 typedef struct{
     char id[4];
     char nombre[50];
     char abrev[3];	
-}materia;
+}materias;
 
 typedef struct{
     char id_materia[4];
     char id_alum[6];
-}matricula;
+}matriculas;
 
 typedef struct{
     char fecha[10];
@@ -67,7 +67,23 @@ typedef struct{
     int hora_clase[4];
     char id_materia[4];
     char grupo[10]; 		
-}horario;
+}horarios;
+
+//Globales de confg
+FILE *USUARIOS_FILE;
+FILE *ALUMNOS_FILE;
+FILE *MATERIAS_FILE;
+FILE *MATRICULAS_FILE;
+FILE *CALIFICACIONES_FILE;
+FILE *HORARIOS_FILE;
+
+//STRUCTS
+usuarios *usuario;
+alumnos *alumno;
+materias *materia;
+matriculas *matricula;
+calificaciones *nota;
+horarios *horario;
 
 
 
