@@ -79,7 +79,7 @@ FILE *HORARIOS_FILE;
 
 //STRUCTS
 
-config_log configuration;
+config_log *configuration;
 usuarios *usuario;
 alumnos *alumno;
 materias *materia;
@@ -97,6 +97,7 @@ void core_materias_recovery();
 void core_matriculas_recovery();
 void core_calificaciones_recovery();
 void core_horarios_recovery();
+void core_usuarios_update();
 
 //Crear Una funcion que contabilice el vacio de las eliminadas
 

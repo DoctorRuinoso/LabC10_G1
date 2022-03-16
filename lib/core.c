@@ -102,6 +102,26 @@ void core_horarios_recovery(){
     fclose(HORARIOS_FILE);
 }
 
+void core_usuarios_update(){
+    //Escritura en el fichero
+    USUARIOS_FILE = fopen("data/Usuarios.txt","w");
+    assert(USUARIOS_FILE!=NULL);
+    for (int i = 0; i <configuration.usuarios_counter ; ++i) {
+        fprintf(USUARIOS_FILE,"%s",usuario[i].id);
+        fprintf(USUARIOS_FILE,"%c",'\n');
+        fprintf(USUARIOS_FILE,"%s",usuario[i].nombre);
+        fprintf(USUARIOS_FILE,"%c",'\n');
+        fprintf(USUARIOS_FILE,"%s",usuario[i].perfil);
+        fprintf(USUARIOS_FILE,"%c",'\n');
+        fprintf(USUARIOS_FILE,"%s",usuario[i].name_tag);
+        fprintf(USUARIOS_FILE,"%c",'\n');
+        fprintf(USUARIOS_FILE,"%s",usuario[i].password);
+        fprintf(USUARIOS_FILE,"%c",'\n');
+    }
+    fclose(USUARIOS_FILE);
+    core_usuarios_recovery();
+}
+
 
 
 
