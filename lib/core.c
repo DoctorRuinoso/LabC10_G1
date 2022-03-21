@@ -11,6 +11,41 @@ void core_data_recovery(){
     core_horarios_recovery();
 }
 
+//Restaura configuracion
+void core_config_restorer(){
+
+    CONFIGFILE=fopen("config/Configfile.txt","r");
+    assert(CONFIG_FILE!=NULL && "No se ha leido correctamente el fichero de config");
+    int lineaux;
+    for (int i = 0; i < 8; ++i) {//siempre vamos a te ner 3 parametros de configuracion
+        fscanf(CONFIG_FILE,"%d",&lineaux);
+        if(i==0){
+            configuration.usuarios_counter=lineaux;
+        }
+        else if(i==1){
+            configuration.alumnos_counter=lineaux;
+        }
+        else if(i==2){
+            configuration.materias_counter=lineaux;
+        }
+        else if(i==3){
+            configuration.matriculas_counter=lineaux;
+        }
+        else if(i==4){
+            configuration.calificaciones_counter=lineaux;
+        }
+        else if(i==5){
+            configuration.horarios_counter=lineaux;
+        }
+        
+    }
+    fclose(CONFIG_FILE);
+
+};//ok
+
+//Finaliza la ejecucion de una funcion
+void core_end_execution(){exit(0);}
+
 //Recupera las instancias de los usuarios
 void core_usuarios_recovery(){
 
@@ -122,6 +157,95 @@ void core_usuarios_update(){
     core_usuarios_recovery();
 }
 
+void core_alumnos_update(){
+    //Escritura en el fichero
+    ALUMNOS_FILE = fopen("data/Alumnos.txt","w");
+    assert(ALUMNOS_FILE!=NULL);
+    for (int i = 0; i <configuration.alumnos_counter ; ++i) {
+        fprintf(ALUMNOS_FILE,"%s",alumno[i].id);
+        fprintf(ALUMNOS_FILE,"%c",'\n');
+        fprintf(ALUMNOS_FILE,"%s",alumno[i].nombre);
+        fprintf(ALUMNOS_FILE,"%c",'\n');
+        fprintf(ALUMNOS_FILE,"%s",alumno[i].direc);
+        fprintf(ALUMNOS_FILE,"%c",'\n');
+        fprintf(ALUMNOS_FILE,"%s",alumno[i].local);
+        fprintf(ALUMNOS_FILE,"%c",'\n');
+        fprintf(ALUMNOS_FILE,"%s",alumno[i].curso);
+        fprintf(ALUMNOS_FILE,"%c",'\n');
+        fprintf(ALUMNOS_FILE,"%s",alumno[i].grupo);
+        fprintf(ALUMNOS_FILE,"%c",'\n');
+    }
+    fclose(ALUMNOS_FILE);
+    core_alumnos_recovery();
+}
 
 
+void core_materias_update(){
+    //Escritura en el fichero
+    MATERIAS_FILE = fopen("data/Materias.txt","w");
+    assert(MATERIAS_FILE!=NULL);
+    for (int i = 0; i <configuration.materias_counter ; ++i) {
+        fprintf(MATERIAS_FILE,"%s",materia[i].id);
+        fprintf(MATERIAS_FILE,"%c",'\n');
+        fprintf(MATERIAS_FILE,"%s",materia[i].nombre);
+        fprintf(MATERIAS_FILE,"%c",'\n');
+        fprintf(MATERIAS_FILE,"%s",materia[i].abrev);
+        fprintf(MATERIAS_FILE,"%c",'\n');
+    }
+    fclose(MATERIAS_FILE);
+    core_materias_recovery();
+}
 
+void core_matriculas_update(){
+    //Escritura en el fichero
+    MATRICULAS_FILE = fopen("data/Matriculas.txt","w");
+    assert(MATRICULAS_FILE!=NULL);
+    for (int i = 0; i <configuration.matriculas_counter ; ++i) {
+        fprintf(MATRICULAS_FILE,"%s",matricula[i].materia);
+        fprintf(MATRICULAS_FILE,"%c",'\n');
+        fprintf(MATRICULAS_FILE,"%s",matricula[i].alum);
+        fprintf(MATRICULAS_FILE,"%c",'\n');
+    }
+    fclose(MATRICULAS_FILE);
+    core_matriculas_recovery();
+}
+
+void core_calificaciones_update(){
+    //Escritura en el fichero
+    CALIFICACIONES_FILE = fopen("data/Calificaciones.txt","w");
+    assert(CALIFICACIONES_FILE!=NULL);
+    for (int i = 0; i <configuration.calificaciones_counter ; ++i) {
+        fprintf(CALIFICACIONES_FILE,"%s",nota[i].fecha);
+        fprintf(CALIFICACIONES_FILE,"%c",'\n');
+        fprintf(CALIFICACIONES_FILE,"%s",nota[i].descrip);
+        fprintf(CALIFICACIONES_FILE,"%c",'\n');
+        fprintf(CALIFICACIONES_FILE,"%s",nota[i].id_materia);
+        fprintf(CALIFICACIONES_FILE,"%c",'\n');
+        fprintf(CALIFICACIONES_FILE,"%s",nota[i].id_alum);
+        fprintf(CALIFICACIONES_FILE,"%c",'\n');
+        fprintf(CALIFICACIONES_FILE,"%s",nota[i].valor);
+        fprintf(CALIFICACIONES_FILE,"%c",'\n');
+    }
+    fclose(CALIFICACIONES_FILE);
+    core_calificaciones_recovery();
+}
+
+void core_horarios_update(){
+    //Escritura en el fichero
+    CALIFICACIONES_FILE = fopen("data/Horarios.txt","w");
+    assert(HORARIOS_FILE!=NULL);
+    for (int i = 0; i <configuration.horarios_counter ; ++i) {
+        fprintf(HORARIOS_FILE,"%s",horario[i].id_profesor);
+        fprintf(HORARIOS_FILE,"%c",'\n');
+        fprintf(HORARIOS_FILE,"%s",horario[i].dia_clase);
+        fprintf(HORARIOS_FILE,"%c",'\n');
+        fprintf(HORARIOS_FILE,"%s",horario[i].hora_clase);
+        fprintf(HORARIOS_FILE,"%c",'\n');
+        fprintf(HORARIOS_FILE,"%s",horario[i].id_materia);
+        fprintf(HORARIOS_FILE,"%c",'\n');
+        fprintf(HORARIOS_FILE,"%s",horario[i].grupo);
+        fprintf(HORARIOS_FILE,"%c",'\n');
+    }
+    fclose(HORARIOS_FILE);
+    core_horarios_recovery();
+}

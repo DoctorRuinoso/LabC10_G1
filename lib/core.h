@@ -70,6 +70,7 @@ typedef struct{
 
 //Globales de confg
 
+FILE *CONFIG_FILE;
 FILE *USUARIOS_FILE;
 FILE *ALUMNOS_FILE;
 FILE *MATERIAS_FILE;
@@ -90,6 +91,8 @@ horarios *horario;
 
 //Cabeceras de Funcion
 
+void core_config_restorer();
+void core_end_execution();
 void core_data_recovery();
 void core_usuarios_recovery();
 void core_alumnos_recovery();
