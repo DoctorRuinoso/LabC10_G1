@@ -1,3 +1,8 @@
+#ifndef _ADMINISTRADOR_H_
+#define _ADMINISTRADOR_H_
+
+
+
 #include<stdio.h>
 #include<string.h>
 #include <stdlib.h>
@@ -13,7 +18,9 @@ void listar_materias(int id);
 void modificar_matricula(int id);
 void eliminar_matricula(int id);
 void crear_matricula(int id);
-void añadir_horas();
+void anadir_horas();
 void eliminar_horas();
 void modificar_horarios();
 void listar_horarios();
+
+#endif
