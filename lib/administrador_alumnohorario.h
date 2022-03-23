@@ -14,13 +14,13 @@ void modificar_alumno();
 void opcion_alumnos();
 void opcion_horarios();
 void listar_alumnos();
-void listar_materias(int id);
-void modificar_matricula(int id);
-void eliminar_matricula(int id);
-void crear_matricula(int id);
-void anadir_horas();
-void eliminar_horas();
-void modificar_horarios();
-void listar_horarios();
+void listar_materias(int id_alumno);
+void modificar_matricula(int id_alumno);
+void eliminar_matricula(int id_alumno);
+void crear_matricula(int id_alumno);
+void anadir_horas(int id_prof);
+void eliminar_horas(int id_prof);
+void modificar_horarios(int id_prof);
+void listar_horarios(int id_prof);
 
 #endif
