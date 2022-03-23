@@ -93,6 +93,7 @@ horarios *horario;
 
 void core_config_restorer();
 void core_end_execution();
+void core_config_changer();
 void core_data_recovery();
 void core_usuarios_recovery();
 void core_alumnos_recovery();
@@ -101,6 +102,12 @@ void core_matriculas_recovery();
 void core_calificaciones_recovery();
 void core_horarios_recovery();
 void core_usuarios_update();
+void core_alumnos_update();
+void core_materias_update();
+void core_matriculas_update();
+void core_calificaciones_update();
+void core_horarios_update();
+void alta_usuario()
 
 //Crear Una funcion que contabilice el vacio de las eliminadas
 

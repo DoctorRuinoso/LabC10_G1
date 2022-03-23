@@ -17,7 +17,7 @@ void core_config_restorer(){
     CONFIGFILE=fopen("config/Configfile.txt","r");
     assert(CONFIG_FILE!=NULL && "No se ha leido correctamente el fichero de config");
     int lineaux;
-    for (int i = 0; i < 8; ++i) {//siempre vamos a te ner 3 parametros de configuracion
+    for (int i = 0; i < 6; ++i) {//siempre vamos a te ner 3 parametros de configuracion
         fscanf(CONFIG_FILE,"%d",&lineaux);
         if(i==0){
             configuration.usuarios_counter=lineaux;
@@ -45,6 +45,34 @@ void core_config_restorer(){
 
 //Finaliza la ejecucion de una funcion
 void core_end_execution(){exit(0);}
+
+
+
+//Nos permite editar la configuracion del máximo de elementos por cada estructura del sistema.
+void core_config_changer(){
+    //Basicamente requiere tener la configuracion en su estructura cargada
+    assert((configuration.usuarios_counter!=0&&configuration.alumnos_counter!=0&&configuration.materias_counter!=0&&configuration.matriculas_counter!=0&&configuration.calificaciones_counter!=0&&configuration.horarios_counter!=0)&&"No se ha cargado de forma correcta el archivo de configuracion");
+    CONFIGFILE=fopen("config/configfile.txt","w");
+    assert(CONFIG_FILE!=NULL&&"No se ha cargado de forma correcta el archivo de configuracion");
+
+    fprintf(CONFIG_FILE,"%i",configuration.usuarios_counter);
+    fprintf(CONFIG_FILE,"%c",'\n');
+    fprintf(CONFIG_FILE,"%i",configuration.alumnos_counter);
+    fprintf(CONFIG_FILE,"%c",'\n');
+    fprintf(CONFIG_FILE,"%i",configuration.materias_counter);
+    fprintf(CONFIG_FILE,"%c",'\n');
+    fprintf(CONFIG_FILE,"%i",configuration.matriculas_counter);
+    fprintf(CONFIG_FILE,"%c",'\n');
+    fprintf(CONFIG_FILE,"%i",configuration.calificaciones_counter);
+    fprintf(CONFIG_FILE,"%c",'\n');
+    fprintf(CONFIG_FILE,"%i",configuration.horarios_counter);
+
+    fclose(CONFIG_FILE);
+    core_config_restorer();
+};
+
+
+
 
 //Recupera las instancias de los usuarios
 void core_usuarios_recovery(){
@@ -248,4 +276,32 @@ void core_horarios_update(){
     }
     fclose(HORARIOS_FILE);
     core_horarios_recovery();
+}
+
+void alta_usuario() {
+    assert(configuration.user_counter!=0 && "NO se ha leido correctamente el fichero");
+    USUARIOS_FILE = fopen("data/usuarios.txt","a");
+    assert(USUARIOS_FILE!=NULL && "No se ha podido iniciar el fichero de usuarios");
+    usuarios temp_user;
+    printf("\n\tIntroduce los datos del nuevo usuario\n");
+    printf("Id del usuario: ");
+    scanf("%s",temp_user.id);
+    printf("\nNombre completo: ");
+    scanf("%s",temp_user.nombre);
+    printf("Tipo de perfil a-> admin , p-> profesor : ");
+    scanf("%s",temp_user.perfil);
+    printf("\nIntroduce el nombre de usuario: ");
+    scanf("%s",temp_user.name_tag);
+    printf("\nIntroduce la password: ");
+    scanf("%s",temp_user.password);
+
+    configuration.usuarios_counter++;
+    usuario = realloc(usuario,configuration.usuarios_counter*sizeof(usuarios));
+    strcpy(usuario[configuration.usuarios_counter-1].id,temp_user.id);
+    strcpy(usuario[configuration.usuarios_counter-1].nombre,temp_user.nombre);
+    strcpy(usuario[configuration.usuarios_counter-1].perfil,temp_user.perfil);
+    strcpy(usuario[configuration.usuarios_counter-1].name_tag,temp_user.name_tag);
+    strcpy(usuario[configuration.usuarios_counter-1].password,temp_user.password);
+    core_usuarios_update();
+    core_usuarios_recovery();
 }
