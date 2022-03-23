@@ -24,7 +24,7 @@ typedef struct {
 }config_log;
 
 typedef struct{
-    char id[3];
+    char id; //Al pedir dato restringir a 3 dígitos//
     char nombre[20];
     char perfil[1];  //a-> administrador, p-> profesor
     char name_tag[5];
@@ -33,7 +33,7 @@ typedef struct{
 }usuarios;
 
 typedef struct{
-    char id[6];
+    int id; //Al pedir dato restringir a 6 dígitos//
     char nombre[20];
     char direc[30];
     char local[5];
@@ -42,29 +42,29 @@ typedef struct{
 }alumnos;
 
 typedef struct{
-    char id[4];
+    int id; //Al pedir dato restringir a 4 dígitos//
     char nombre[50];
     char abrev[3];	
 }materias;
 
 typedef struct{
-    char id_materia[4];
-    char id_alum[6];
+    int id_materia; //Al pedir dato restringir a 4 dígitos//
+    int id_alum; //Al pedir dato restringir a 6 dígitos//
 }matriculas;
 
 typedef struct{
     char fecha[10];
     char descrip[30];
-    char id_materia[4];
-    char id_alum[6];
+    int id_materia; //Al pedir dato restringir a 4 dígitos//
+    int id_alum; //Al pedir dato restringir a 6 dígitos//
     float valor;	
 }calificaciones;
 
 typedef struct{
-    char id_profesor[3];
+    int id_profesor; //Al pedir dato restringir a 3 dígitos//
     int dia_clase;
     int hora_clase[4];
-    char id_materia[4];
+    int id_materia; //Al pedir dato restringir a 4  dígitos//
     char grupo[10]; 		
 }horarios;
 
