@@ -2,11 +2,14 @@
 #include <stdlib.h>
 #include "core.h"
 
-void perfil_profesor_menu_alum();
-void perfil_profesor_listados();
-void perfil_profesor_menu_profesor();
 void perfil_profesor_menu_general();
+int perfil_profesor_listados();
+void perfil_profesor_menu_profesor();
+void perfil_profesor_menu_alum();
 
+//Cabecera:void perfil_profesor_menu_general()
+//Precondicion:Ninguna
+//Postcondicion:Mostrar el menú general
 
 void perfil_profesor_menu_general(){
 
@@ -18,8 +21,11 @@ void perfil_profesor_menu_general(){
 
 
 
+//Cabecera:int perfil_profesor_listados()
+//Precondicion:Ninguna
+//Postcondicion:Mostrar el listado de grupo y materias y seleccionar el correspondiente.
 
-void perfil_profesor_listados(){
+int perfil_profesor_listados(){
 
   int op_listado;
 
@@ -30,16 +36,24 @@ void perfil_profesor_listados(){
 
   core_horarios_recovery();
 
-  for (int i = 0; i < configuration->horarios_counter; ++i) {
+  for (int i = 0; i < configuration->horarios_counter;i++) {
 
-      if (horarios[i].id_profesor==usuarios[].id){
+      if (horario[i].id_profesor==usuario[1].id){//Buscamos un horario en el que este el profesor asignado
 
-
-     for(int j=0; j<configuration->matriculas_counter){
+     for(int j=0; j<configuration->matriculas_counter;j++){
       
-      if (horarios[i].id_materia == materias[j].abrev){
+      if (horario[i].id_materia == matricula[j].id_materia){//Buscamos la materia que coincide en el horario
 
-       printf("%i.Grupo %s Materia %s",i,horarios[i].grupo,materias[j].abrev);
+        for(int k=0;k<configuration->horarios_counter;k++){
+        
+        if(matricula[j].id_materia == materia[k].id){//Buscamos el id de la materia de la matricula
+
+          printf("%i.Grupo %s Materia %s\n",i,horario[i].grupo,materia[k].abrev);//Imprimimos por pantalla los grupos,materias..
+        }
+        
+
+        }
+      
 
       }else{
        printf("El profesor no tiene materias asignadas\n");
@@ -49,8 +63,7 @@ void perfil_profesor_listados(){
      }  
 
       }else{
-
-        printf("No hay un Usuario profesor\n");
+        printf("El profesor no tiene ningún horario asignado\n");
       }
 
     }
@@ -59,9 +72,16 @@ void perfil_profesor_listados(){
     printf("Seleccione el grupo a elegir\n");
     scanf("%i",&op_listado);
     fflush(stdin);
+    
+    return (op_listado);
+
+
 
 }
 
+//Cabecera:void perfil_profesor_menu_profesor()
+//Precondicion:El profesor ha accedido al grupo seleccionado
+//Postcondicion:El profesor ve la lista de alumnos o cambia el grupo correspondiente.
 
  void perfil_profesor_menu_profesor(){
   int op;
@@ -90,6 +110,10 @@ void perfil_profesor_listados(){
  
 
 }
+
+//Cabecera:void perfil_profesor_menu_alum()
+//Precondicion:El profesor  ha seleccionado la lista de alumnos
+//Postcondicion:El profesor lee la ficha de los alumnos y las calificaciones
 
 void perfil_profesor_menu_alum(){
   int op_alum;
