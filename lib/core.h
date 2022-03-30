@@ -91,23 +91,87 @@ horarios *horario;
 
 //Cabeceras de Funcion
 
-void core_config_restorer();
-void core_end_execution();
-void core_config_changer();
-void core_data_recovery();
-void core_usuarios_recovery();
-void core_alumnos_recovery();
-void core_materias_recovery();
-void core_matriculas_recovery();
-void core_calificaciones_recovery();
-void core_horarios_recovery();
-void core_usuarios_update();
-void core_alumnos_update();
-void core_materias_update();
-void core_matriculas_update();
-void core_calificaciones_update();
-void core_horarios_update();
-void alta_usuario()
+void core_config_restorer();    //Cabecera: void core_config_restorer();
+                                //Precondición: tipo de estructura config_log inicializada.
+                                //Postcondición: restaura configuración de las demás estructuras.
+
+
+void core_end_execution();      //Cabecera: void core_end_execution();
+                                //Precondición: ninguna.
+                                //Postcondición: función para salir del sistema.
+
+
+void core_config_changer();     //Cabecera: void core_config_changer();
+                                //Precondición: tipo de estructura config_log inicializada.
+                                //Postcondición: guarda en el fichero configfile.txt los datos del
+                                // tipo de estructuta config_log.
+
+
+void core_data_recovery();      //Cabecera: void core_data_recovery();
+                                //Precondición: tener definidas las funciones a las que llama.
+                                //Postcondición: llama a todas las funciones recovery a la vez.
+
+
+
+void core_config_options_menu();    //Cabecera: void core_config_options_menu();
+                                    //Precondición:
+                                    //Postcondición:
+
+
+
+void core_usuarios_recovery();      //Cabecera: void core_usuarios_recovery();
+                                    //Precondición: fichero usuarios.txt creado y el tipo de estructura  usuarios inicializada.
+                                    //Postcondición: copia los datos del fichero a la estructura.
+
+void core_alumnos_recovery();       //Cabecera: void core_alumnos_recovery();
+                                    //Precondición: fichero alumnos.txt creado y el tipo de estructura  alumnos inicializada,
+                                    //Postcondición: copia los datos del fichero a la estructura.
+
+void core_materias_recovery();      //Cabecera: void core_materias_recovery();
+                                    //Precondición: fichero materias.txt creado y el tipo de estructura  materias inicializada,
+                                    //Postcondición: copia los datos del fichero a la estructura.
+
+
+void core_matriculas_recovery();    //Cabecera: void core_matriculas_recovery();
+                                    //Precondición: fichero matriculas.txt creado y el tipo de estructura  matriculas inicializada,
+                                    //Postcondición: copia los datos del fichero a la estructura.
+
+void core_calificaciones_recovery();    //Cabecera: void core_calificaciones_recovery();
+                                        //Precondición: fichero calificaciones.txt creado y el tipo de estructura calificaciones inicializada,
+                                        //Postcondición: copia los datos del fichero a la estructura.
+
+void core_horarios_recovery();      //Cabecera: void core_horarios_recovery();
+                                    //Precondición: fichero horarios.txt creado y el tipo de estructura horarios inicializada,
+                                    //Postcondición: copia los datos del fichero a la estructura.
+
+void core_usuarios_update();        //Cabecera: void core_usuarios_update();
+                                    //Precondición: fichero usuarios.txt creado y el tipo de estructura usuarios inicializada,
+                                    //Postcondición: copia los datos de la estructura al fichero.
+
+
+void core_alumnos_recovery();       //Cabecera: void core_alumnos_recovery();
+                                    //Precondición: fichero alumnos.txt creado y el tipo de estructura  alumnos inicializada,
+                                    //Postcondición: copia los datos del fichero a la estructura.
+
+void core_materias_update();        //Cabecera: void core_materias_recovery();
+                                    //Precondición: fichero materias.txt creado y el tipo de estructura  materias inicializada,
+                                    //Postcondición: copia los datos de la estructura al fichero.
+
+
+void core_matriculas_update();      //Cabecera: void core_matriculas_recovery();
+                                    //Precondición: fichero matriculas.txt creado y el tipo de estructura  matriculas inicializada,
+                                    //Postcondición: copia los datos de la estructura al fichero.
+
+void core_calificaciones_update();      //Cabecera: void core_calificaciones_recovery();
+                                        //Precondición: fichero calificaciones.txt creado y el tipo de estructura calificaciones inicializada,
+                                        //Postcondición: copia los datos de la estructura al fichero.
+
+void core_horarios_update();        //Cabecera: void core_horarios_recovery();
+                                    //Precondición: fichero horarios.txt creado y el tipo de estructura horarios inicializada,
+                                    //Postcondición: copia los datos de la estructura al fichero.
+
+void alta_usuario();
+void core_login();
 
 //Crear Una funcion que contabilice el vacio de las eliminadas
 

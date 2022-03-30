@@ -14,10 +14,10 @@ void core_data_recovery(){
 //Restaura configuracion
 void core_config_restorer(){
 
-    CONFIGFILE=fopen("config/Configfile.txt","r");
+    CONFIGFILE=fopen("config/configfile.txt","r");
     assert(CONFIG_FILE!=NULL && "No se ha leido correctamente el fichero de config");
     int lineaux;
-    for (int i = 0; i < 6; ++i) {//siempre vamos a te ner 3 parametros de configuracion
+    for (int i = 0; i < 6; ++i) {//siempre vamos a tener 3 parametros de configuracion
         fscanf(CONFIG_FILE,"%d",&lineaux);
         if(i==0){
             configuration.usuarios_counter=lineaux;
@@ -71,7 +71,23 @@ void core_config_changer(){
     core_config_restorer();
 };
 
+unsigned core_config_options_menu(){
+    /*
+        OPCIONES A RELLENAR:
+        1)Registro
+        2)Acceso al sistema
+    */
+    unsigned opcion;
+    assert(CONFIG_FILE!=NULL  && "Aun no se ha inicializado los ficheros de configuracion\n");
+    printf("Bienvenido\n");
+    printf("1) Registro de un nuevo Usuario\n");
+    printf("2) Acceder al sistema\n");
+    printf("Selecciona la opcion: ");
+    scanf("%d",&opcion);
+    return opcion;
 
+
+}
 
 
 //Recupera las instancias de los usuarios
@@ -277,8 +293,7 @@ void core_horarios_update(){
     fclose(HORARIOS_FILE);
     core_horarios_recovery();
 }
-
-void alta_usuario() {
+    void alta_usuario() {
     assert(configuration.user_counter!=0 && "NO se ha leido correctamente el fichero");
     USUARIOS_FILE = fopen("data/usuarios.txt","a");
     assert(USUARIOS_FILE!=NULL && "No se ha podido iniciar el fichero de usuarios");
@@ -305,3 +320,31 @@ void alta_usuario() {
     core_usuarios_update();
     core_usuarios_recovery();
 }
+
+    unsigned core_login() {
+        assert(configuration.usuarios_counter != 0);
+        char id[3], password[9];
+        int found_user = -1;
+        printf("Hola , bienvenido al sistema de acceso\n");
+        ppio:
+        printf("Introduce ID de Usuario: ");
+        scanf("%s", id);
+        for (int i = 0; i < configuration.usuarios_counter; i++) {
+            if (strcmp(usuario[i].id, id) == 0)
+                found_user = i;
+        }
+        if (found_user == -1) {
+            printf("El usuario no existe, redirigiendo\n");
+            goto ppio;
+        }
+        if (found_user != 1) {
+            printf("Introduce la pass de tu usuario: ");
+            scanf("%s", password);
+            if (strcmp(usuario[found_user].password, password) == 0)
+                return found_user;
+            else {
+                printf("Pass incorrecta,redirigiendo al loging\n");
+                goto ppio;
+            }
+        }
+    }
