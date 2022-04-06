@@ -2,14 +2,9 @@
 #include <stdlib.h>
 #include "core.h"
 
-void perfil_profesor_menu_general();
-int perfil_profesor_listados();
-void perfil_profesor_menu_profesor();
-void perfil_profesor_menu_alum();
 
-//Cabecera:void perfil_profesor_menu_general()
-//Precondicion:Ninguna
-//Postcondicion:Mostrar el menú general
+
+
 
 void perfil_profesor_menu_general(){
 
@@ -21,9 +16,6 @@ void perfil_profesor_menu_general(){
 
 
 
-//Cabecera:int perfil_profesor_listados()
-//Precondicion:Ninguna
-//Postcondicion:Mostrar el listado de grupo y materias y seleccionar el correspondiente.
 
 int perfil_profesor_listados(){
 
@@ -86,9 +78,12 @@ int perfil_profesor_listados(){
  void perfil_profesor_menu_profesor(){
   int op;
   do{
-  
+  int grupo;
+  grupo = perfil_profesor_listados();
+
    system("cls");
    printf ("Menu: \n");
+    printf("%i.Grupo %s Materia %s\n",grupo,horario[grupo].grupo,materia[grupo].abrev);
    printf("-------------------------\n");
    printf("1.Lista de alumnos\n");
    printf("2.Cambiar de grupo\n");
@@ -97,6 +92,8 @@ int perfil_profesor_listados(){
    scanf("%i",&op);
    fflush(stdin);
    system("cls");
+   
+ 
 
   }while(op<=0 || op>=4);
 
@@ -115,13 +112,29 @@ int perfil_profesor_listados(){
 //Precondicion:El profesor  ha seleccionado la lista de alumnos
 //Postcondicion:El profesor lee la ficha de los alumnos y las calificaciones
 
-void perfil_profesor_menu_alum(){
+int perfil_profesor_menu_alum(){
   int op_alum;
+  int grupoalum,elecalum;
+  grupoalum = perfil_profesor_listados();
  
   do{
    system("cls");
    printf ("Menu: Lista de alumnos\n");
-   printf ("Alumno: -------------------\n");
+
+  for(int i=0;i<configuration->alumnos_counter;i++){
+    if(alumno[i].grupo ==grupoalum){
+      printf("%i.El nombre es %i\n",i,alumno[i].nombre);
+    }
+  }
+
+    printf("Seleccione el alumno a elegir\n");
+    scanf("%i",&elecalum);
+    fflush(stdin);
+    
+
+
+   
+   printf ("Alumno: %i\n",alumno[elecalum].nombre);
    printf("----------------------------\n");
    printf("1.Ficha del alumno\n");
    printf("2.Calificaciones del alumno\n");
@@ -138,8 +151,8 @@ void perfil_profesor_menu_alum(){
 
    switch (op_alum)
    {
-   case 1: break;
-   case 2: break;
+   case 1: break;perfil_profesor_ficha_alumno();break;
+   case 2: break;perfil_profesor_calif_alumno();
    case 3: perfil_profesor_menu_profesor();break;
 
    default: exit(-1); break;
@@ -148,3 +161,24 @@ void perfil_profesor_menu_alum(){
 }
 
 
+
+
+void perfil_profesor_ficha_alumno(){
+int op_ficha,elec;
+op_ficha = perfil_profesor_listados();
+elec = perfil_profesor_menu_alum();
+
+printf("Alumno %i\n",alumno[op_ficha].nombre[elec]);
+
+
+}
+
+
+void perfil_profesor_calif_alumno(){
+int op_calif,elec_calif;
+op_calif = perfil_profesor_listados();
+elec_calif = perfil_profesor_menu_alum();
+
+printf("Alumno %i\n",nota[op_calif].valor);
+
+}
