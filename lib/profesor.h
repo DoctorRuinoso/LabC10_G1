@@ -1,7 +1,10 @@
 #ifndef profesor_H
 #define profesor_H
 
-
+#include <string.h>
+#include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 //Cabecera:void perfil_profesor_menu_general()
 //Precondicion:Ninguna
@@ -35,5 +38,26 @@ void perfil_profesor_ficha_alumno();
 //Precondicion:recibe el id alumno y se muestra sus calificaciones
 //Postcondicion:El profesor modifica los datos del alumno.
 void perfil_profesor_calif_alumno();
+
+
+//Cabecera:perfil_profesor_calif_alumno()
+//Precondicion:recibe el id alumno y se muestra sus calificaciones
+//Postcondicion:El profesor modifica los datos del alumno.
+void perfil_profesor_modificar_alumno();
+
+//Cabecera:perfil_profesor_calif_alumno()
+//Precondicion:recibe el id alumno y se muestra sus calificaciones
+//Postcondicion:El profesor modifica los datos del alumno.
+void perfil_profesor_modificar_calif();
+
+//Cabecera:perfil_profesor_calif_alumno()
+//Precondicion:recibe el id alumno y se muestra sus calificaciones
+//Postcondicion:El profesor modifica los datos del alumno.
+void perfil_profesor_annadir_calif();
+
+//Cabecera:perfil_profesor_calif_alumno()
+//Precondicion:recibe el id alumno y se muestra sus calificaciones
+//Postcondicion:El profesor modifica los datos del alumno.
+void perfil_profesor_borrar_calif();
 
 #endif
