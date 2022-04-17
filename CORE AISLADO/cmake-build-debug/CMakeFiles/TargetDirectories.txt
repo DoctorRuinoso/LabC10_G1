@@ -1,0 +1,3 @@
+C:/Users/marco/Desktop/CORE AISLADO/cmake-build-debug/CMakeFiles/MIPROYECTOMP.dir
+C:/Users/marco/Desktop/CORE AISLADO/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/marco/Desktop/CORE AISLADO/cmake-build-debug/CMakeFiles/rebuild_cache.dir
