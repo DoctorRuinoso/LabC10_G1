@@ -1,15 +1,15 @@
 001
-Juan Pérez
-administrador
+Juan_Pérez
+a
 admin
 jp123456
 002
-Guillermo Gómez
-profesor
+Guillermo_Gómez
+p
 prof1
 gg125431
 003
-Francisco González
-profesor
+Francisco_González
+p
 prof2
 ml909876

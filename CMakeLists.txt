@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.20)
-project(MP2022 C)
+cmake_minimum_required(VERSION 3.17)
+project(MIPROYECTOMP C)
 
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 99)
 
-add_executable(MP2022 main.c core.h core.c profesor.h profesor.c administrador.c administrador.h)
+add_executable(MIPROYECTOMP main.c lib/core.h lib/core.c lib/profesor.h lib/profesor.c lib/administrador.c lib/administrador.h)

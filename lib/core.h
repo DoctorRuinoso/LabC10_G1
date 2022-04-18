@@ -3,8 +3,8 @@
  *
  * */
 
-#ifndef MP2022_CORE_H
-#define MP2022_CORE_H
+#ifndef MIPROYECTOMP_CORE_H
+#define MIPROYECTOMP_CORE_H
 #include <string.h>
 #include <assert.h>
 #include <stdio.h>
@@ -24,48 +24,48 @@ typedef struct {
 }config_log;
 
 typedef struct{
-    char id; //Al pedir dato restringir a 3 dígitos//
+    char id[3]; //Al pedir dato restringir a 3 dígitos//
     char nombre[20];
-    char perfil[1];  //a-> administrador, p-> profesor
+    char perfil;  //a-> administrador, p-> profesor
     char name_tag[5];
     char password[8];
 
 }usuarios;
 
 typedef struct{
-    int id; //Al pedir dato restringir a 6 dígitos//
+    char id[6]; //Al pedir dato restringir a 6 dígitos//
     char nombre[20];
     char direc[30];
     char local[5];
     char curso[30];
-    char grupo[10];	
+    char grupo[10];
 }alumnos;
 
 typedef struct{
-    int id; //Al pedir dato restringir a 4 dígitos//
+    char id[4]; //Al pedir dato restringir a 4 dígitos//
     char nombre[50];
-    char abrev[3];	
+    char abrev[3];
 }materias;
 
 typedef struct{
-    int id_materia; //Al pedir dato restringir a 4 dígitos//
-    int id_alum; //Al pedir dato restringir a 6 dígitos//
+    char id_materia[4]; //Al pedir dato restringir a 4 dígitos//
+    char id_alum[6]; //Al pedir dato restringir a 6 dígitos//
 }matriculas;
 
 typedef struct{
     char fecha[10];
     char descrip[30];
-    int id_materia; //Al pedir dato restringir a 4 dígitos//
-    int id_alum; //Al pedir dato restringir a 6 dígitos//
-    float valor;	
+    char id_materia[4]; //Al pedir dato restringir a 4 dígitos//
+    char id_alum[6]; //Al pedir dato restringir a 6 dígitos//
+    float valor;
 }calificaciones;
 
 typedef struct{
-    int id_profesor; //Al pedir dato restringir a 3 dígitos//
+    char id_profesor[3]; //Al pedir dato restringir a 3 dígitos//
     int dia_clase;
     int hora_clase[4];
-    int id_materia; //Al pedir dato restringir a 4  dígitos//
-    char grupo[10]; 		
+    char id_materia[4]; //Al pedir dato restringir a 4  dígitos//
+    char grupo[10];
 }horarios;
 
 //Globales de confg
@@ -80,7 +80,7 @@ FILE *HORARIOS_FILE;
 
 //STRUCTS
 
-config_log *configuration;
+config_log configuration;
 usuarios *usuario;
 alumnos *alumno;
 materias *materia;
@@ -92,90 +92,95 @@ horarios *horario;
 //Cabeceras de Funcion
 
 void core_config_restorer();    //Cabecera: void core_config_restorer();
-                                //Precondición: tipo de estructura config_log inicializada.
-                                //Postcondición: restaura configuración de las demás estructuras.
+//Precondición: tipo de estructura config_log inicializada.
+//Postcondición: restaura configuración de las demás estructuras.
 
 
 void core_end_execution();      //Cabecera: void core_end_execution();
-                                //Precondición: ninguna.
-                                //Postcondición: función para salir del sistema.
+//Precondición: ninguna.
+//Postcondición: función para salir del sistema.
 
 
 void core_config_changer();     //Cabecera: void core_config_changer();
-                                //Precondición: tipo de estructura config_log inicializada.
-                                //Postcondición: guarda en el fichero configfile.txt los datos del
-                                // tipo de estructuta config_log.
+//Precondición: tipo de estructura config_log inicializada.
+//Postcondición: guarda en el fichero configfile.txt los datos del
+// tipo de estructuta config_log.
 
 
 void core_data_recovery();      //Cabecera: void core_data_recovery();
-                                //Precondición: tener definidas las funciones a las que llama.
-                                //Postcondición: llama a todas las funciones recovery a la vez.
+//Precondición: tener definidas las funciones a las que llama.
+//Postcondición: llama a todas las funciones recovery a la vez.
 
 
 
-void core_config_options_menu();    //Cabecera: void core_config_options_menu();
-                                    //Precondición:
-                                    //Postcondición:
+unsigned core_config_options_menu();    //Cabecera: void core_config_options_menu();
+//Precondición:
+//Postcondición:
 
 
 
 void core_usuarios_recovery();      //Cabecera: void core_usuarios_recovery();
-                                    //Precondición: fichero usuarios.txt creado y el tipo de estructura  usuarios inicializada.
-                                    //Postcondición: copia los datos del fichero a la estructura.
+//Precondición: fichero usuarios.txt creado y el tipo de estructura  usuarios inicializada.
+//Postcondición: copia los datos del fichero a la estructura.
 
 void core_alumnos_recovery();       //Cabecera: void core_alumnos_recovery();
-                                    //Precondición: fichero alumnos.txt creado y el tipo de estructura  alumnos inicializada,
-                                    //Postcondición: copia los datos del fichero a la estructura.
+//Precondición: fichero alumnos.txt creado y el tipo de estructura  alumnos inicializada,
+//Postcondición: copia los datos del fichero a la estructura.
 
 void core_materias_recovery();      //Cabecera: void core_materias_recovery();
-                                    //Precondición: fichero materias.txt creado y el tipo de estructura  materias inicializada,
-                                    //Postcondición: copia los datos del fichero a la estructura.
+//Precondición: fichero materias.txt creado y el tipo de estructura  materias inicializada,
+//Postcondición: copia los datos del fichero a la estructura.
 
 
 void core_matriculas_recovery();    //Cabecera: void core_matriculas_recovery();
-                                    //Precondición: fichero matriculas.txt creado y el tipo de estructura  matriculas inicializada,
-                                    //Postcondición: copia los datos del fichero a la estructura.
+//Precondición: fichero matriculas.txt creado y el tipo de estructura  matriculas inicializada,
+//Postcondición: copia los datos del fichero a la estructura.
 
 void core_calificaciones_recovery();    //Cabecera: void core_calificaciones_recovery();
-                                        //Precondición: fichero calificaciones.txt creado y el tipo de estructura calificaciones inicializada,
-                                        //Postcondición: copia los datos del fichero a la estructura.
+//Precondición: fichero calificaciones.txt creado y el tipo de estructura calificaciones inicializada,
+//Postcondición: copia los datos del fichero a la estructura.
 
 void core_horarios_recovery();      //Cabecera: void core_horarios_recovery();
-                                    //Precondición: fichero horarios.txt creado y el tipo de estructura horarios inicializada,
-                                    //Postcondición: copia los datos del fichero a la estructura.
+//Precondición: fichero horarios.txt creado y el tipo de estructura horarios inicializada,
+//Postcondición: copia los datos del fichero a la estructura.
 
 void core_usuarios_update();        //Cabecera: void core_usuarios_update();
-                                    //Precondición: fichero usuarios.txt creado y el tipo de estructura usuarios inicializada,
-                                    //Postcondición: copia los datos de la estructura al fichero.
+//Precondición: fichero usuarios.txt creado y el tipo de estructura usuarios inicializada,
+//Postcondición: copia los datos de la estructura al fichero.
 
 
-void core_alumnos_recovery();       //Cabecera: void core_alumnos_recovery();
-                                    //Precondición: fichero alumnos.txt creado y el tipo de estructura  alumnos inicializada,
-                                    //Postcondición: copia los datos del fichero a la estructura.
+void core_alumnos_update();       //Cabecera: void core_alumnos_update();
+//Precondición: fichero alumnos.txt creado y el tipo de estructura  alumnos inicializada,
+//Postcondición: copia los datos del fichero a la estructura.
 
-void core_materias_update();        //Cabecera: void core_materias_recovery();
-                                    //Precondición: fichero materias.txt creado y el tipo de estructura  materias inicializada,
-                                    //Postcondición: copia los datos de la estructura al fichero.
+void core_materias_update();        //Cabecera: void core_materias_update();
+//Precondición: fichero materias.txt creado y el tipo de estructura  materias inicializada,
+//Postcondición: copia los datos de la estructura al fichero.
 
 
-void core_matriculas_update();      //Cabecera: void core_matriculas_recovery();
-                                    //Precondición: fichero matriculas.txt creado y el tipo de estructura  matriculas inicializada,
-                                    //Postcondición: copia los datos de la estructura al fichero.
+void core_matriculas_update();      //Cabecera: void core_matriculas_update();
+//Precondición: fichero matriculas.txt creado y el tipo de estructura  matriculas inicializada,
+//Postcondición: copia los datos de la estructura al fichero.
 
-void core_calificaciones_update();      //Cabecera: void core_calificaciones_recovery();
-                                        //Precondición: fichero calificaciones.txt creado y el tipo de estructura calificaciones inicializada,
-                                        //Postcondición: copia los datos de la estructura al fichero.
+void core_calificaciones_update();      //Cabecera: void core_calificaciones_update();
+//Precondición: fichero calificaciones.txt creado y el tipo de estructura calificaciones inicializada,
+//Postcondición: copia los datos de la estructura al fichero.
 
-void core_horarios_update();        //Cabecera: void core_horarios_recovery();
-                                    //Precondición: fichero horarios.txt creado y el tipo de estructura horarios inicializada,
-                                    //Postcondición: copia los datos de la estructura al fichero.
+void core_horarios_update();        //Cabecera: void core_horarios_update);
+//Precondición: fichero horarios.txt creado y el tipo de estructura horarios inicializada,
+//Postcondición: copia los datos de la estructura al fichero.
 
-void alta_usuario();
-void core_login();
+void alta_usuario();        //Cabecera: void alta_usuario();
+//Precondición: tipo de estructura usuario inicializada.
+//Postcondición: función para dar de alta a un usuario que puede ser administrador o profesor.
+
+
+unsigned core_login();          //Cabecera: void core_login();
+//Precondición: tipo de estructura usuario inicializada.
+//Postcondición: función para loguearse como administrador o profesor.
 
 //Crear Una funcion que contabilice el vacio de las eliminadas
 
 
 
-
-#endif //MP2022_CORE_H
+#endif //MIPROYECTOMP_CORE_H

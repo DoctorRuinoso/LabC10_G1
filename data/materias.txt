@@ -1,9 +1,9 @@
 0001
-Matemáticas Aplicadas a las Ciencias Sociales
-MCS
+Mates
+MAT
 0002
-Historia del Arte
-HAR
+Historia
+HIS
 0003
-Matemática Discreta
-MD
+Lengua
+LEN

@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include "profesor.h"
 #include "core.h"
 
@@ -28,31 +27,44 @@ int perfil_profesor_listados(){
   userp = core_login();
 
   core_horarios_recovery();
+  core_matriculas_recovery();
   core_materias_recovery();
   
 
-  for (int i = 0; i < configuration.horarios_counter;i++) {
+  for (int i = 0; i < configuration->horarios_counter;i++) {
 
-      if (strcmp(horario[i].id_profesor,usuario[userp].id)==0){//Comprobamos que el profesor corresponde con el usuario logeado
-      
-      for(int j = 0; j<configuration.materias_counter;j++){
-      
-      if (strcmp(horario[i].id_materia,materia[j].id)==0){//Buscamos la materia que coincide en el horario para mostrarlo por pantalla
+      if (horario[i].id_profesor==usuario[userp].id){//Buscamos un horario en el que este el profesor asignado
 
-          printf("%i.Grupo %s Materia %s\n",i,horario[i].grupo,materia[j].abrev);//Imprimimos por pantalla los grupos,materias..
+     for(int j=0; j<configuration->matriculas_counter;j++){
+      
+      if (horario[i].id_materia == matricula[j].id_materia){//Buscamos la materia que coincide en el horario
+
+        for(int k=0;k<configuration->horarios_counter;k++){
+        
+        if(matricula[j].id_materia == materia[k].id){//Buscamos el id de la materia de la matricula
+
+          printf("%i.Grupo %s Materia %s\n",i,horario[i].grupo,materia[k].abrev);//Imprimimos por pantalla los grupos,materias..
         }
+        
 
-      }
-      
-      }
-
-      }
+        }
       
 
-    
+      }else{
+       printf("El profesor no tiene materias asignadas\n");
+
+     }
+
+     }  
+
+      }else{
+        printf("El profesor no tiene ningún horario asignado\n");
+      }
+
+    }
 
   
-    printf("Seleccione el grupo a elegir\n"); //Seleccionamos el numero del grupo a elegir
+    printf("Seleccione el grupo a elegir\n");
     scanf("%i",&op_listado);
     fflush(stdin);
     
@@ -69,6 +81,7 @@ int perfil_profesor_listados(){
  void perfil_profesor_menu_profesor(){
 
   core_horarios_recovery();
+  core_matriculas_recovery();
   core_materias_recovery();
 
   int op;
@@ -124,7 +137,7 @@ core_materias_recovery();
    system("cls");
    printf ("Menu: Lista de alumnos\n");
    
-   for(int i=0 ;i<configuration.alumnos_counter;i++)
+   for(int i=0 ;i<configuration->alumnos_counter;i++)
    {
      if (strcmp(horario[grupoalum].grupo,alumno[i].grupo)){
         printf("%i.%s\n",i,alumno[i].nombre);
@@ -136,7 +149,6 @@ core_materias_recovery();
     scanf("%i",&elecalum);
     fflush(stdin);
     
-    system("cls");
 
 
    
@@ -212,7 +224,7 @@ int op_calif,elec_calif,op;
 op_calif = perfil_profesor_listados();
 elec_calif = perfil_profesor_menu_alum();
 
-for(int i=0; i<configuration.calificaciones_counter;i++)
+for(int i=0; i<configuration->calificaciones_counter;i++)
 {
 if(strcmp(alumno[elec_calif].id,nota[i].id_alum)==0){
  printf("Alumno %s Nota %s",alumno[elec_calif].nombre,nota[i].valor);
@@ -299,7 +311,7 @@ core_alumnos_recovery();
 int elec_calif;
 elec_calif = perfil_profesor_menu_alum();
 
-for(int i=0; i<configuration.calificaciones_counter;i++)
+for(int i=0; i<configuration->calificaciones_counter;i++)
 {
 if(strcmp(alumno[elec_calif].id,nota[i].id_alum)==0){
  printf("Nota %s\n",nota[i].valor);
@@ -317,7 +329,7 @@ elec_calif = perfil_profesor_menu_alum();
 core_calificaciones_recovery();
 core_alumnos_recovery();
 
-for(int i=0; i<configuration.calificaciones_counter;i++)
+for(int i=0; i<configuration->calificaciones_counter;i++)
 {
 if(strcmp(alumno[elec_calif].id,nota[i].id_alum)==0){
 printf("Introduzca la nueva nota");
@@ -337,7 +349,7 @@ elec_calif = perfil_profesor_menu_alum();
 core_calificaciones_recovery();
 core_alumnos_recovery();
 
-for(int i=0; i<configuration.calificaciones_counter;i++)
+for(int i=0; i<configuration->calificaciones_counter;i++)
 {
 if(strcmp(alumno[elec_calif].id,nota[i].id_alum)==0){
 nota[i].valor = -1;
