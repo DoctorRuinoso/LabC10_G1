@@ -40,23 +40,23 @@ void perfil_profesor_ficha_alumno();
 void perfil_profesor_calif_alumno();
 
 
-//Cabecera:perfil_profesor_calif_alumno()
-//Precondicion:recibe el id alumno y se muestra sus calificaciones
+//Cabecera:void perfil_profesor_modificar_alumno()
+//Precondicion:recibe el id alumno 
 //Postcondicion:El profesor modifica los datos del alumno.
 void perfil_profesor_modificar_alumno();
 
-//Cabecera:perfil_profesor_calif_alumno()
-//Precondicion:recibe el id alumno y se muestra sus calificaciones
+//Cabecera:void perfil_profesor_modificar_calif()
+//Precondicion:recibe el id alumno 
 //Postcondicion:El profesor modifica los datos del alumno.
 void perfil_profesor_modificar_calif();
 
-//Cabecera:perfil_profesor_calif_alumno()
-//Precondicion:recibe el id alumno y se muestra sus calificaciones
+//Cabecera:void perfil_profesor_annadir_calif();
+//Precondicion:recibe el id alumno 
 //Postcondicion:El profesor modifica los datos del alumno.
 void perfil_profesor_annadir_calif();
 
-//Cabecera:perfil_profesor_calif_alumno()
-//Precondicion:recibe el id alumno y se muestra sus calificaciones
+//Cabecera:void perfil_profesor_borrar_calif()
+//Precondicion:recibe el id alumno 
 //Postcondicion:El profesor modifica los datos del alumno.
 void perfil_profesor_borrar_calif();
 
