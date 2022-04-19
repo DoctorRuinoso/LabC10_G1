@@ -479,8 +479,8 @@ void modificar_matricula(char id_alumno[]){
             strcpy(matricula[i].id_materia,id_materia_nueva);
         }
     }
-    core_materias_update();
-    core_materias_recovery();
+    core_matriculas_update();
+    core_matriculas_recovery();
 }
 
 //Cabecera: void eliminar_matricula(int id_alumno)
@@ -504,8 +504,8 @@ void eliminar_matricula(char id_alumno[]){
         }
     }
     configuration.matriculas_counter=configuration.matriculas_counter-1;
-    core_materias_update();
-    core_materias_recovery();
+    core_matriculas_update();
+    core_matriculas_recovery();
 }
 
 
@@ -522,8 +522,8 @@ void crear_matricula(char id_alumno[]){
     strcpy(matricula[configuration.matriculas_counter].id_alum,id_alum);                //Se le asignan los valores
     strcpy(matricula[configuration.matriculas_counter].id_materia,id_materia);
     configuration.matriculas_counter++;
-    core_materias_update();
-    core_materias_recovery();
+    core_matriculas_update();
+    core_matriculas_recovery();
 }
 
 //Cabecera: void añdir_horas(int id_prof)
