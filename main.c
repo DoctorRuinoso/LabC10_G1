@@ -13,14 +13,14 @@ int main() {
     while (exit_token==1)
     {
         if (core_config_options_menu()== 1)
-            //core_user_register();//fallo
-                else{logged_user=core_login();}
+            alta_usuario();//fallo
+        else{logged_user=core_login();}
 
-        if (strcmp(usuario[logged_user].role,"a")==0){
+        if (strcmp(usuario[logged_user].perfil,"a")==0){
             menu_administrador(logged_user);
         }
-        if (strcmp(usuario[logged_user].role,"p")==0){
-            perfil_profesor_menu_general(logged_user);
+        if (strcmp(usuario[logged_user].perfil,"p")==0){
+            //perfil_profesor_menu_general(logged_user);
         }
         printf("Deseas hacer alguna operacion mas?\n1)Si\t 2)No\n");
         scanf("%d",&exit_token);

@@ -63,7 +63,7 @@ typedef struct{
 typedef struct{
     char id_profesor[3]; //Al pedir dato restringir a 3 dígitos//
     int dia_clase;
-    int hora_clase[4];
+    char hora_clase[4];
     char id_materia[4]; //Al pedir dato restringir a 4  dígitos//
     char grupo[10];
 }horarios;

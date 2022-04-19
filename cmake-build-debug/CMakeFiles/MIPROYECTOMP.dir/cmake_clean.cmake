@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/MIPROYECTOMP.dir/lib/administrador.c.obj"
   "CMakeFiles/MIPROYECTOMP.dir/lib/core.c.obj"
   "CMakeFiles/MIPROYECTOMP.dir/main.c.obj"
   "MIPROYECTOMP.exe"

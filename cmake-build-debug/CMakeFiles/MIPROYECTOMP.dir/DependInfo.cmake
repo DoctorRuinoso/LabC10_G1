@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "C:/Users/marco/Desktop/MIPROYECTOMP/lib/administrador.c" "C:/Users/marco/Desktop/MIPROYECTOMP/cmake-build-debug/CMakeFiles/MIPROYECTOMP.dir/lib/administrador.c.obj"
   "C:/Users/marco/Desktop/MIPROYECTOMP/lib/core.c" "C:/Users/marco/Desktop/MIPROYECTOMP/cmake-build-debug/CMakeFiles/MIPROYECTOMP.dir/lib/core.c.obj"
   "C:/Users/marco/Desktop/MIPROYECTOMP/main.c" "C:/Users/marco/Desktop/MIPROYECTOMP/cmake-build-debug/CMakeFiles/MIPROYECTOMP.dir/main.c.obj"
   )

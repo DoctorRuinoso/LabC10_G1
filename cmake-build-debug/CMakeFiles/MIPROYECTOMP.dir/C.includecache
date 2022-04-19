@@ -6,6 +6,18 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/marco/Desktop/MIPROYECTOMP/lib/administrador.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+core.h
+C:/Users/marco/Desktop/MIPROYECTOMP/lib/core.h
+administrador.h
+C:/Users/marco/Desktop/MIPROYECTOMP/lib/administrador.h
+
 C:/Users/marco/Desktop/MIPROYECTOMP/lib/administrador.h
 stdio.h
 -
@@ -23,26 +35,4 @@ stdio.h
 -
 stdlib.h
 -
-
-C:/Users/marco/Desktop/MIPROYECTOMP/lib/profesor.h
-string.h
--
-assert.h
--
-stdio.h
--
-stdlib.h
--
-
-C:/Users/marco/Desktop/MIPROYECTOMP/main.c
-stdio.h
--
-string.h
--
-lib/core.h
-C:/Users/marco/Desktop/MIPROYECTOMP/lib/core.h
-lib/profesor.h
-C:/Users/marco/Desktop/MIPROYECTOMP/lib/profesor.h
-lib/administrador.h
-C:/Users/marco/Desktop/MIPROYECTOMP/lib/administrador.h
 

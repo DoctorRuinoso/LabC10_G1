@@ -1,9 +1,0 @@
-0001
-Matemáticas Aplicadas a las Ciencias Sociales
-MCS
-0002
-Historia del Arte
-HAR
-0003
-Matemática Discreta
-MD

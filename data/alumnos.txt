@@ -1,18 +1,18 @@
 123456
-Dolores_Martín
-C/diego montes nº 4
-Cádiz
-1ºBachillerato Ciencias Sociales
-1ºHCSA
+Dolores_Martin
+C_diego_montes_n_4
+Cadiz
+1_Bachillerato_Ciencias_Sociales
+1_HIS
 342312
 Pedro_Lima
-Avda Colón S/N
-Puerto_Santa María
-4ºESO
-4ºB
+Avda_Colon
+Puerto_Santa_Maria
+4_ESO
+4_B
 987654
 Matias_Matao
-Avda Perú S/N
+Avda_Peru
 Jerez
-1ºBachillerato Tecnológico
-1ºMD
+1_Bachillerato_Tecnologico
+1_LEN

@@ -76,6 +76,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/marco/Desktop/MIPROYECTOMP/lib/administrador.c">
+			<Option target="MIPROYECTOMP"/>
+		</Unit>
+		<Unit filename="C:/Users/marco/Desktop/MIPROYECTOMP/lib/administrador.h">
+			<Option target="MIPROYECTOMP"/>
+		</Unit>
 		<Unit filename="C:/Users/marco/Desktop/MIPROYECTOMP/lib/core.c">
 			<Option target="MIPROYECTOMP"/>
 		</Unit>

@@ -299,7 +299,7 @@ void core_horarios_update(){
     core_horarios_recovery();
 }
 
-/*void alta_usuario() {
+void alta_usuario() {
     assert(configuration.usuarios_counter!=0 && "NO se ha leido correctamente el fichero");
     USUARIOS_FILE = fopen("data/usuarios.txt","a");
     assert(USUARIOS_FILE!=NULL && "No se ha podido iniciar el fichero de usuarios");
@@ -325,11 +325,11 @@ void core_horarios_update(){
     strcpy(usuario[configuration.usuarios_counter-1].password,temp_user.password);
     core_usuarios_update();
     core_usuarios_recovery();
-}*/
+}
 
 unsigned core_login() {
     assert(configuration.usuarios_counter != 0);
-    char id[3], password[9];
+    char id[3], password[8];
     int found_user = -1;
     printf("Hola , bienvenido al sistema de acceso\n");
     ppio:

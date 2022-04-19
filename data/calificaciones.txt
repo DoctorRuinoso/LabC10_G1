@@ -1,15 +1,15 @@
-25/02/2017
-Examen unidad 1
+25_02_2017
+Examen_unidad_1
 0001
 342312
 7
-25/02/2017
-Examen unidad 4
+25_02_2017
+Examen_unidad_4
 0002
 123456
 4
-21/02/2018
-Examen unidad 2
+21_02_2018
+Examen unidad_2
 0003
 987654
 2

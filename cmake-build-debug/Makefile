@@ -142,6 +142,33 @@ MIPROYECTOMP/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\MIPROYECTOMP.dir\build.make CMakeFiles/MIPROYECTOMP.dir/build
 .PHONY : MIPROYECTOMP/fast
 
+lib/administrador.obj: lib/administrador.c.obj
+
+.PHONY : lib/administrador.obj
+
+# target to build an object file
+lib/administrador.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MIPROYECTOMP.dir\build.make CMakeFiles/MIPROYECTOMP.dir/lib/administrador.c.obj
+.PHONY : lib/administrador.c.obj
+
+lib/administrador.i: lib/administrador.c.i
+
+.PHONY : lib/administrador.i
+
+# target to preprocess a source file
+lib/administrador.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MIPROYECTOMP.dir\build.make CMakeFiles/MIPROYECTOMP.dir/lib/administrador.c.i
+.PHONY : lib/administrador.c.i
+
+lib/administrador.s: lib/administrador.c.s
+
+.PHONY : lib/administrador.s
+
+# target to generate assembly for a file
+lib/administrador.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MIPROYECTOMP.dir\build.make CMakeFiles/MIPROYECTOMP.dir/lib/administrador.c.s
+.PHONY : lib/administrador.c.s
+
 lib/core.obj: lib/core.c.obj
 
 .PHONY : lib/core.obj
@@ -205,6 +232,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... MIPROYECTOMP
+	@echo ... lib/administrador.obj
+	@echo ... lib/administrador.i
+	@echo ... lib/administrador.s
 	@echo ... lib/core.obj
 	@echo ... lib/core.i
 	@echo ... lib/core.s

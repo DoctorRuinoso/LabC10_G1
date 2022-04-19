@@ -113,11 +113,11 @@ void baja_usuario(){
 
 
     for(int i = 0; i < configuration.usuarios_counter; ++i){
-        if(id == usuario[i].id){                     // si el id del usuario coincide con el que se quiere dar de baja no lo escribe en la estructuta
+        if(strcmp(usuario[i].id,id)==0){                     // si el id del usuario coincide con el que se quiere dar de baja no lo escribe en la estructuta
             i++;
         }//fin_if
         else{                                               //reescribe la estructura sin el usuario que se le quiere dar de baja
-            usuario[j].id = usuario[i].id;
+            strcpy(usuario[j].id,usuario[i].id);
             strcpy(usuario[j].nombre,usuario[i].nombre);
             strcpy(usuario[j].perfil,usuario[i].perfil);
             strcpy(usuario[j].name_tag,usuario[i].name_tag);
@@ -213,7 +213,7 @@ void alta_materia(){
 
     configuration.materias_counter++;
     materia = realloc(materia,configuration.materias_counter*sizeof(materias));
-    materia[configuration.materias_counter-1].id = temp_materias.id;
+    strcpy(materia[configuration.materias_counter-1].id,temp_materias.id);
     strcpy(materia[configuration.materias_counter-1].nombre,temp_materias.nombre);
     strcpy(materia[configuration.materias_counter-1].abrev,temp_materias.abrev);
     core_materias_update();
@@ -235,7 +235,7 @@ void baja_materia(){
             i++;
         }
         else{                                               //reescribe la estructura sin la materia que se le quiere dar de baja
-            materia[j].id = materia[i].id;
+            strcpy(materia[j].id,materia[i].id);
             strcpy(materia[j].nombre,materia[i].nombre);
             strcpy(materia[j].abrev,materia[i].abrev);
             j++;
@@ -402,7 +402,7 @@ void modificar_alumno(){
 //Precondición: El administrador pulsa la opcion listar alumno.
 //Postcondición: Se listan todos los alumnos y si el administrador lo desea puede seleccionar un id de alumno y trabajar con datos de sus matriculas y materias.
 void listar_alumnos(){
-    int i,aux,id;
+    int i,aux,id,opc,salida;
     printf("Los alumnos son:\n");
     for(i=0;i<configuration.alumnos_counter;i++){
         printf("%s-",alumno[i].id); // Escribe el identificador
@@ -423,7 +423,7 @@ void listar_alumnos(){
                 for(i=0;i<configuration.alumnos_counter;i++){
                     if(strcmp(id,alumno[i].id)==0){
                         do{
-                            print("Seleccione la que desea hacer con este alumno:\n 1.Mostrar materias de las que se encuentra matriculado \n 2.Realizar cambios en matricula\n 3.Eliminar matricula\n 4.Crear nueva matricula\n 5.Salir\n");
+                            printf("Seleccione la que desea hacer con este alumno:\n 1.Mostrar materias de las que se encuentra matriculado \n 2.Realizar cambios en matricula\n 3.Eliminar matricula\n 4.Crear nueva matricula\n 5.Salir\n");
                             scanf("%i",&opc);
                             switch(opc){                        //segun la eleccion se hara una funcion
                                 case 1: listar_materias_de_alumno(id);break;
@@ -465,7 +465,7 @@ void listar_materias_de_alumno(char id_alumno[]){
 //Postcondición: Se modifica la matricula de un alumno concreto.
 void modificar_matricula(char id_alumno[]){
     int i;
-    char id_materia[4],id_materia_nueva[4];
+    char id_materia[4],id_materia_nueva[4], id_alum[6];
     printf("Escribe el identificador de la materia la cual quieres modificar en la matricula del alumno");      //se le pide el identificador de materia
     fflush(stdin);
     fgets(id_materia,4,stdin);
@@ -488,7 +488,7 @@ void modificar_matricula(char id_alumno[]){
 //Postcondición: Se elimina la matricula seleccionada de un alumno concreto.
 void eliminar_matricula(char id_alumno[]){
     int i,j;
-    char id_materia;
+    char id_materia[6];
     printf("Escribe el identificador de la materia la cual quieres eliminar en la matricula del alumno");   //se le pide el identificador de materia
     fflush(stdin);
     fgets(id_materia,4,stdin);
@@ -499,7 +499,7 @@ void eliminar_matricula(char id_alumno[]){
         }
         else{
             strcpy(matricula[j].id_alum,matricula[i].id_alum);
-            strcpy(matricula[j].id_materia,matricula[i].materia);
+            strcpy(matricula[j].id_materia,matricula[i].id_materia);
             j++;
         }
     }
@@ -514,7 +514,7 @@ void eliminar_matricula(char id_alumno[]){
 //Precondición: Id_alumno inicializado.
 //Postcondición: Se crea una matricula de un alumno concreto.
 void crear_matricula(char id_alumno[]){
-    char id_materia;
+    char id_materia[6],id_alum[6];
     printf("Escribe el identificador de la materia la cual quieres añadir en la matricula del alumno");     //Se le pide el identificador de materia
     fflush(stdin);
     fgets(id_materia,4,stdin);
@@ -582,7 +582,7 @@ void eliminar_horas(char id_prof[]){
         else{
             strcpy(horario[j].id_profesor,horario[i].id_profesor);
             horario[j].dia_clase=horario[i].dia_clase;
-            horario[j].hora_clase=horario[i].hora_clase;
+            strcpy(horario[j].hora_clase,horario[i].hora_clase);
             strcpy(horario[j].id_materia,horario[i].id_materia);
             strcpy(horario[j].grupo,horario[i].grupo);
             j++;
