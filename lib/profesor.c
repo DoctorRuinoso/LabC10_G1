@@ -1,70 +1,57 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "profesor.h"
 #include "core.h"
 
 
-void perfil_profesor_menu_general(){
-
- perfil_profesor_listados();
+int perfil_profesor_menu_general(unsigned logged_user){
+ perfil_profesor_listados(logged_user);
  system("cls");
- perfil_profesor_menu_profesor();
+ perfil_profesor_menu_profesor(logged_user);
 
 }
 
 
 
 
-int perfil_profesor_listados(){
+int perfil_profesor_listados(unsigned logged_user){
 
-  int op_listado,userp;
+  int op_listado;
+  
 
   printf("Listado de grupos y materias\n");
   printf("----------------------------\n");
   system("pause");
   
-  userp = core_login();
 
   core_horarios_recovery();
-  core_matriculas_recovery();
   core_materias_recovery();
   
 
-  for (int i = 0; i < configuration->horarios_counter;i++) {
+  for (int i = 0; i < configuration.horarios_counter;i++) {
 
-      if (horario[i].id_profesor==usuario[userp].id){//Buscamos un horario en el que este el profesor asignado
-
-     for(int j=0; j<configuration->matriculas_counter;j++){
+      if (strcmp(horario[i].id_profesor,logged_user)==0){//Comprobamos que el profesor corresponde con el usuario logeado
       
-      if (horario[i].id_materia == matricula[j].id_materia){//Buscamos la materia que coincide en el horario
-
-        for(int k=0;k<configuration->horarios_counter;k++){
-        
-        if(matricula[j].id_materia == materia[k].id){//Buscamos el id de la materia de la matricula
-
-          printf("%i.Grupo %s Materia %s\n",i,horario[i].grupo,materia[k].abrev);//Imprimimos por pantalla los grupos,materias..
-        }
-        
-
-        }
+      for(int j = 0; j<configuration.materias_counter;j++){
       
+      if (strcmp(horario[i].id_materia,materia[j].id)==0){//Buscamos la materia que coincide en el horario para mostrarlo por pantalla
 
-      }else{
-       printf("El profesor no tiene materias asignadas\n");
+          printf("%i.Grupo %s Materia %s\n",i,horario[i].grupo,materia[j].abrev);//Imprimimos por pantalla los grupos,materias..
+        }
 
-     }
-
-     }  
-
-      }else{
-        printf("El profesor no tiene ningún horario asignado\n");
+      }
+      
       }
 
-    }
+      }
+      
+
+    
 
   
-    printf("Seleccione el grupo a elegir\n");
+    printf("Seleccione el grupo a elegir\n"); //Seleccionamos el numero del grupo a elegir
     scanf("%i",&op_listado);
     fflush(stdin);
     
@@ -78,16 +65,15 @@ int perfil_profesor_listados(){
 //Precondicion:El profesor ha accedido al grupo seleccionado
 //Postcondicion:El profesor ve la lista de alumnos o cambia el grupo correspondiente.
 
- void perfil_profesor_menu_profesor(){
+ void perfil_profesor_menu_profesor(unsigned logged_user){
 
   core_horarios_recovery();
-  core_matriculas_recovery();
   core_materias_recovery();
 
   int op;
   do{
   int grupo;
-  grupo = perfil_profesor_listados();
+  grupo = perfil_profesor_listados(logged_user);
 
    system("cls");
    printf ("Menu: \n");
@@ -107,9 +93,9 @@ int perfil_profesor_listados(){
 
    switch (op)
    {
-   case 1: perfil_profesor_menu_alum(); break;
-   case 2: system("cls");perfil_profesor_listados();break;
-   case 3: perfil_profesor_menu_general();break;
+   case 1: perfil_profesor_menu_alum(logged_user); break;
+   case 2: system("cls");perfil_profesor_listados(logged_user);break;
+   case 3: perfil_profesor_menu_general(logged_user);break;
    default: exit(-1); break;
    }
  
@@ -120,7 +106,7 @@ int perfil_profesor_listados(){
 //Precondicion:El profesor  ha seleccionado la lista de alumnos
 //Postcondicion:El profesor lee la ficha de los alumnos y las calificaciones
 
-int perfil_profesor_menu_alum(){
+int perfil_profesor_menu_alum(unsigned logged_user){
 
 core_alumnos_recovery();
 core_horarios_recovery();
@@ -131,13 +117,13 @@ core_materias_recovery();
   int elecalum;
   int grupoalum;
 
-  grupoalum = perfil_profesor_listados();
+  grupoalum = perfil_profesor_listados(logged_user);
  
   do{
    system("cls");
    printf ("Menu: Lista de alumnos\n");
    
-   for(int i=0 ;i<configuration->alumnos_counter;i++)
+   for(int i=0 ;i<configuration.alumnos_counter;i++)
    {
      if (strcmp(horario[grupoalum].grupo,alumno[i].grupo)){
         printf("%i.%s\n",i,alumno[i].nombre);
@@ -149,6 +135,7 @@ core_materias_recovery();
     scanf("%i",&elecalum);
     fflush(stdin);
     
+    system("cls");
 
 
    
@@ -169,9 +156,9 @@ core_materias_recovery();
 
    switch (op_alum)
    {
-   case 1: perfil_profesor_ficha_alumno();break;
-   case 2: perfil_profesor_calif_alumno();break;
-   case 3: perfil_profesor_menu_profesor();break;
+   case 1: perfil_profesor_ficha_alumno(logged_user);break;
+   case 2: perfil_profesor_calif_alumno(logged_user);break;
+   case 3: perfil_profesor_menu_profesor(logged_user);break;
 
    default: exit(-1); break;
    }
@@ -182,9 +169,9 @@ return elecalum;
 
 
 
-void perfil_profesor_ficha_alumno(){
+void perfil_profesor_ficha_alumno(unsigned logged_user){
 int elec,op;
-elec = perfil_profesor_menu_alum();
+elec = perfil_profesor_menu_alum(logged_user);
 printf("Alumno %s Dirección %s Grupo %s Curso %s\n",alumno[elec].nombre,alumno[elec].direc,alumno[elec].grupo,alumno[elec].curso);
 
 
@@ -208,9 +195,9 @@ printf("Alumno %s Dirección %s Grupo %s Curso %s\n",alumno[elec].nombre,alumno[
 
    switch (op)
    {
-   case 1:perfil_profesor_modificar_alumno();  break;
-   case 2: perfil_profesor_ficha_alumno();break;
-   case 3: perfil_profesor_menu_general();break;
+   case 1:perfil_profesor_modificar_alumno(logged_user);  break;
+   case 2: perfil_profesor_ficha_alumno(logged_user);break;
+   case 3: perfil_profesor_menu_general(logged_user);break;
    default: exit(-1); break;
    }
 
@@ -218,13 +205,13 @@ printf("Alumno %s Dirección %s Grupo %s Curso %s\n",alumno[elec].nombre,alumno[
 }
 
 
-void perfil_profesor_calif_alumno(){
+void perfil_profesor_calif_alumno(unsigned logged_user){
 core_calificaciones_recovery();
 int op_calif,elec_calif,op;
-op_calif = perfil_profesor_listados();
-elec_calif = perfil_profesor_menu_alum();
+op_calif = perfil_profesor_listados(logged_user);
+elec_calif = perfil_profesor_menu_alum(logged_user);
 
-for(int i=0; i<configuration->calificaciones_counter;i++)
+for(int i=0; i<configuration.calificaciones_counter;i++)
 {
 if(strcmp(alumno[elec_calif].id,nota[i].id_alum)==0){
  printf("Alumno %s Nota %s",alumno[elec_calif].nombre,nota[i].valor);
@@ -254,11 +241,11 @@ if(strcmp(alumno[elec_calif].id,nota[i].id_alum)==0){
 
    switch (op)
    {
-   case 1:perfil_profesor_modificar_calif();break;
-   case 2:perfil_profesor_annadir_calif();break;
-   case 3:perfil_profesor_borrar_calif(); break;
-   case 4: perfil_profesor_ficha_alumno();break;
-   case 5: perfil_profesor_menu_general();break;
+   case 1:perfil_profesor_modificar_calif(logged_user);break;
+   case 2:perfil_profesor_annadir_calif(logged_user);break;
+   case 3:perfil_profesor_borrar_calif(logged_user); break;
+   case 4: perfil_profesor_ficha_alumno(logged_user);break;
+   case 5: perfil_profesor_menu_general(logged_user);break;
    default: exit(-1); break;
    }
 
@@ -269,10 +256,10 @@ if(strcmp(alumno[elec_calif].id,nota[i].id_alum)==0){
 
 }
 
-void perfil_profesor_modificar_alumno()
+void perfil_profesor_modificar_alumno(unsigned logged_user)
 {
   int op,elec_calif;
-  elec_calif = perfil_profesor_menu_alum();
+  elec_calif = perfil_profesor_menu_alum(logged_user);
     do{
 
 
@@ -297,21 +284,21 @@ void perfil_profesor_modificar_alumno()
    case 1: printf("%i\n",alumno[elec_calif].direc);fgets(alumno[elec_calif].direc,30,stdin);core_alumnos_update();break;
    case 2: printf("%i\n",alumno[elec_calif].curso);fgets(alumno[elec_calif].curso,30,stdin);core_alumnos_update();break;
    case 3: printf("%i\n",alumno[elec_calif].grupo);fgets(alumno[elec_calif].grupo,30,stdin);core_alumnos_update();break;
-   case 4: perfil_profesor_ficha_alumno();break;
-   case 5: perfil_profesor_menu_general();break;
+   case 4: perfil_profesor_ficha_alumno(logged_user);break;
+   case 5: perfil_profesor_menu_general(logged_user);break;
    default: exit(-1); break;
    }
 
 }
 
-void perfil_profesor_modificar_calif()
+void perfil_profesor_modificar_calif(unsigned logged_user)
 {
 core_calificaciones_recovery();
 core_alumnos_recovery();
 int elec_calif;
-elec_calif = perfil_profesor_menu_alum();
+elec_calif = perfil_profesor_menu_alum(logged_user);
 
-for(int i=0; i<configuration->calificaciones_counter;i++)
+for(int i=0; i<configuration.calificaciones_counter;i++)
 {
 if(strcmp(alumno[elec_calif].id,nota[i].id_alum)==0){
  printf("Nota %s\n",nota[i].valor);
@@ -321,15 +308,15 @@ if(strcmp(alumno[elec_calif].id,nota[i].id_alum)==0){
 
 }
 
-void perfil_profesor_annadir_calif()
+void perfil_profesor_annadir_calif(unsigned logged_user)
 {
 int elec_calif;
 float nueva_nota;
-elec_calif = perfil_profesor_menu_alum();
+elec_calif = perfil_profesor_menu_alum(logged_user);
 core_calificaciones_recovery();
 core_alumnos_recovery();
 
-for(int i=0; i<configuration->calificaciones_counter;i++)
+for(int i=0; i<configuration.calificaciones_counter;i++)
 {
 if(strcmp(alumno[elec_calif].id,nota[i].id_alum)==0){
 printf("Introduzca la nueva nota");
@@ -342,14 +329,14 @@ core_calificaciones_update();
 
 }
 
-void perfil_profesor_borrar_calif()
+void perfil_profesor_borrar_calif(unsigned logged_user)
 {
 int elec_calif;
-elec_calif = perfil_profesor_menu_alum();
+elec_calif = perfil_profesor_menu_alum(logged_user);
 core_calificaciones_recovery();
 core_alumnos_recovery();
 
-for(int i=0; i<configuration->calificaciones_counter;i++)
+for(int i=0; i<configuration.calificaciones_counter;i++)
 {
 if(strcmp(alumno[elec_calif].id,nota[i].id_alum)==0){
 nota[i].valor = -1;
