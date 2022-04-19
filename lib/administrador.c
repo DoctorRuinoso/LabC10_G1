@@ -7,7 +7,7 @@
 //Cabecera: void menu_administrador()
 //Precondición: el usuario ha seleccionado el perfil administrador.
 //Postcondición: se muestran las opciones del menu administrador: usuarios, alumnos, materias, horarios.
-void menu_administrador(){
+void menu_administrador(int logged_user){
     int opc;
     do{
         printf(" ____________________________________________________________\n |Menu:Administrador                                        |\n |----------------------------------------------------------|\n |                  1.Usuario                               |\n |                  2.Alumnos                               |\n |                  3.Materias                              |\n |                  4.Horarios                              |\n |__________________________________________________________|\n");
@@ -81,9 +81,11 @@ void opcion_alumnos(){
 //Postcondición: Dirige al administrador hacia la funcion que quiere hacer con los horarios
 void opcion_horarios(){
     system("cls");          //Limpia la pantalla
-    int opc,id_prof,salida=0;
-    printf("Escribe el identificador de profesor existente para gestionar sus horarios");
-    scanf("%i",&id_prof);
+    int opc,salida=0;
+    char id_prof[3];
+    printf("Escribe el identificador de profesor existente para gestionar sus horarios\n");
+    fflush(stdin);
+    fgets(id_prof,4,stdin);
     do{
         printf("Seleccione que opcion desea\n 1.Añadir horas de clasede un profesor\n 2.Eliminar horas de clase de un profesor\n 3.Modificar horas de clase de un profesor\n 4.Listar horarios de cada profesor \n 5. Salir\n"); //Muestra el menu de la opcion horarios
         scanf("%i",&opc);
@@ -301,23 +303,31 @@ void alta_alumno(){
     printf("Escriba el id del alumno\n");                           // se le pide el id de alumno
     fflush(stdin);
     fgets(alumno[configuration.alumnos_counter].id,10,stdin);       //lee el id por teclado
+    espacios_desc(alumno[configuration.alumnos_counter].id);
     printf("Escriba el nombre del alumno\n");                       //se le pide el nombre de alumno
     fflush(stdin);
     fgets(alumno[configuration.alumnos_counter].nombre,30,stdin);   //lee el nombre por teclado
+    espacios_desc(alumno[configuration.alumnos_counter].nombre);
     printf("Escriba la direccion del alumno\n");                    // se le pide la direccion del alumno
     fflush(stdin);
     fgets(alumno[configuration.alumnos_counter].direc,30,stdin);    //lee la direccion por teclado
+    espacios_desc(alumno[configuration.alumnos_counter].direc);
     printf("Escriba la localidad del alumno\n");                    //se le pide la localidad del alumno
     fflush(stdin);
     fgets(alumno[configuration.alumnos_counter].local,30,stdin);    //lee la localidad por teclado
+    espacios_desc(alumno[configuration.alumnos_counter].local);
     printf("Escriba el curso al que pertenece el alumno\n");        //se le pide el curso del alumno
     fflush(stdin);
     fgets(alumno[configuration.alumnos_counter].curso,30,stdin);    //lee el curso por teclado
+    espacios_desc(alumno[configuration.alumnos_counter].curso);
     printf("Escriba el grupo del alumno\n");                        //se le pide el grupo al alumno
     fflush(stdin);
     fgets(alumno[configuration.alumnos_counter].grupo,10,stdin);    //lee el grupo por teclado
+    espacios_desc(alumno[configuration.alumnos_counter].grupo);
     configuration.alumnos_counter++;
     system("cls");          //Limpia la pantalla
+    core_alumnos_update();
+    core_alumnos_recovery();
 }
 
 //Cabecera: void baja_alumno()
@@ -325,7 +335,7 @@ void alta_alumno(){
 //Postcondición: Se da de baja a un alumno
 void baja_alumno(){
     char id[6];
-    int j=0;
+    int j=0,i;
     printf("Escriba el id del alumno que desea dar de baja\n");
     fflush(stdin);
     fgets(id,6,stdin);
@@ -337,15 +347,17 @@ void baja_alumno(){
         }
         else{                                               //reescribe la estructura sin el alumno que se le quiere dar de baja
             strcpy(alumno[j].id,alumno[i].id);
-            strcpy(alumno[j].nombre=alumno[i].nombre);
-            strcpy(alumno[j].direc=alumno[i].direc);
-            strcpy(alumno[j].local=alumno[i].local);
-            strcpy(alumno[j].curso=alumno[i].curso);
-            strcpy(alumno[j].grupo=alumno[i].grupo);
+            strcpy(alumno[j].nombre,alumno[i].nombre);
+            strcpy(alumno[j].direc,alumno[i].direc);
+            strcpy(alumno[j].local,alumno[i].local);
+            strcpy(alumno[j].curso,alumno[i].curso);
+            strcpy(alumno[j].grupo,alumno[i].grupo);
             j++;
         }
     }
     configuration.alumnos_counter=configuration.alumnos_counter-1;
+    core_alumnos_update();
+    core_alumnos_recovery();
 }
 
 //Cabecera: void modificar_alumno()
@@ -361,7 +373,7 @@ void modificar_alumno(){
         printf("%s-",alumno[i].local); // Escribe el la localidad
         printf("%s-",alumno[i].curso); // Escribe el curso al que pertenece
         printf("%s\n",alumno[i].grupo); // Escribe el grupo
-    }
+        }
     printf("Escriba el id de alumno segun la lista que desea cambiar\n");       //se le pide el id del alumno a modificar
     fflush(stdin);
     fgets(id,6,stdin);
@@ -370,19 +382,19 @@ void modificar_alumno(){
             printf("Escribe que quieres cambiar\n 1. Identificador\n 2.Nombre\n 3.Direccion\n 4.Localidad\n 5.Curso\n 6. Grupo\n");
             scanf("%i",&elec);
             switch(elec){               //segun la eleccion se modificara un campo o otro
-                case 1: printf("Escribe su nuevo identificador\n");fflush(stdin); fgets(alumno[i].id,6,stdin); break;
-                case 2: printf("Escribe su nuevo nombre\n");fflush(stdin); fgets(alumno[i].nombre,30,stdin); break;
-                case 3: printf("Escribe su nueva direccion\n");fflush(stdin); fgets(alumno[i].direc,30,stdin); break;
-                case 4: printf("Escribe su nueva localidad\n");fflush(stdin); fgets(alumno[i].local,30,stdin); break;
-                case 5: printf("Escribe su nuevo curso\n");fflush(stdin); fgets(alumno[i].curso,30,stdin); break;
-                case 6: printf("Escribe su nuevo grupo\n");fflush(stdin); fgets(alumno[i].grupo,10,stdin); break;
+                case 1: printf("Escribe su nuevo identificador\n");fflush(stdin); fgets(alumno[i].id,6,stdin);espacios_desc(alumno[configuration.alumnos_counter].id); break;
+                case 2: printf("Escribe su nuevo nombre\n");fflush(stdin); fgets(alumno[i].nombre,30,stdin);espacios_desc(alumno[configuration.alumnos_counter].nombre); break;
+                case 3: printf("Escribe su nueva direccion\n");fflush(stdin); fgets(alumno[i].direc,30,stdin);espacios_desc(alumno[configuration.alumnos_counter].direc); break;
+                case 4: printf("Escribe su nueva localidad\n");fflush(stdin); fgets(alumno[i].local,30,stdin);espacios_desc(alumno[configuration.alumnos_counter].local); break;
+                case 5: printf("Escribe su nuevo curso\n");fflush(stdin); fgets(alumno[i].curso,30,stdin);espacios_desc(alumno[configuration.alumnos_counter].curso); break;
+                case 6: printf("Escribe su nuevo grupo\n");fflush(stdin); fgets(alumno[i].grupo,10,stdin);espacios_desc(alumno[configuration.alumnos_counter].grupo); break;
                 default: break;
             }
             exit(-1);
         }
-
     }
-
+    core_alumnos_update();
+    core_alumnos_recovery();
 }
 
 
@@ -400,188 +412,251 @@ void listar_alumnos(){
         printf("%s-",alumno[i].curso); // Escribe el curso al que pertenece
         printf("%s\n",alumno[i].grupo); // Escribe el grupo
 
-    }
-    printf("\n Si desea modificar los datos de un alumno escriba su identificador, si no quiere modificar ningun alumno pulse 0\n");        // se le pide el identificador del alumno del que desea ver
-    scanf("%i",&aux);
-    if(aux!=0){
-        for(i=0;i<configuration.alumnos_counter;i++){
-            if(aux=alumno.identificador){
-                do{
-                    print("Seleccione la que desea hacer con este alumno:\n 1.Mostrar materias de las que se encuentra matriculado \n 2.Realizar cambios en matricula\n 3.Eliminar matricula\n 4.Crear nueva matricula\n 5.Salir\n");
-                    scanf("%i",&opc);
-                    switch(opc){                        //segun la eleccion se hara una funcion
-                        case 1: listar_materias(aux);break;
-                        case 2: modificar_matricula(aux);break;
-                        case 3: eliminar_matricula(aux);break;
-                        case 4: crear_matricula(aux);break;
-                        case 5: salida=1;break;
-                    }
-
-                }while(opc<1 || opc>5 && salida==0);        //no sale hasta que el numero introducido sea valido
-                i=configuration.alumnos_counter+1;
-            }
         }
-    }
+            printf("\n Si desea modificar los datos de un alumno pulse 1, si no quiere modificar ningun alumno pulse 0\n");        // se le pide el identificador del alumno del que desea ver
+            scanf("%i",&aux);
+            if(aux!=0){
+                printf("\n Escriba el id alumno\n");
+                fflush(stdin);
+                fgets(id,6,stdin);
+                espacios_desc(id);
+                for(i=0;i<configuration.alumnos_counter;i++){
+                    if(strcmp(id,alumno[i].id)==0){
+                        do{
+                            print("Seleccione la que desea hacer con este alumno:\n 1.Mostrar materias de las que se encuentra matriculado \n 2.Realizar cambios en matricula\n 3.Eliminar matricula\n 4.Crear nueva matricula\n 5.Salir\n");
+                            scanf("%i",&opc);
+                            switch(opc){                        //segun la eleccion se hara una funcion
+                                case 1: listar_materias_de_alumno(id);break;
+                                case 2: modificar_matricula(id);break;
+                                case 3: eliminar_matricula(id);break;
+                                case 4: crear_matricula(id);break;
+                                case 5: salida=1;break;
+                            }
+
+                        }while(opc<1 || opc>5 && salida==0);        //no sale hasta que el numero introducido sea valido
+                        i=configuration.alumnos_counter+1;
+                    }
+                }
+            }
 }
 
 
 //Cabecera: void listar_materias(int id_alumno)
 //Precondición: Id_alumno inicializado.
 //Postcondición: Se listan las materias de un alumno concreto.
-void listar_materias_de_alumno(int id_alumno){
-    int i;
-    for(i=0;i<configuration.materias_counter;i++){
-        if(id_alumno==matricula[i].id_alum){
-            printf("%s-",materia[i].id); // Escribe el identificador
-            printf("%s-",materia[i].nombre); // Escribe el nombre
-            printf("%s\n",materia[i].abrev); // Escribe la abreviatura
+void listar_materias_de_alumno(char id_alumno[]){
+    int i,j;
+     for(i=0;i<configuration.matriculas_counter;i++){
+            if(strcmp(id_alumno,matricula[i].id_alum)==0){
+                    for(j=0;j<configuration.materias_counter;j++){
+                        if(strcmp(materia[j].id,matricula[i].id_materia)==0){
+                            printf("%s-",materia[i].id); // Escribe el identificador
+                            printf("%s-",materia[i].nombre); // Escribe el nombre
+                            printf("%s\n",materia[i].abrev); // Escribe la abreviatura
+                        }
+                    }
+            }
         }
-    }
 }
 
 
 //Cabecera: void modificar_matricula(int id_alumno)
 //Precondición: Id_alumno inicializado.
 //Postcondición: Se modifica la matricula de un alumno concreto.
-void modificar_matricula(int id_alumno){
-    int i,id_materia,id_materia_nueva;
+void modificar_matricula(char id_alumno[]){
+    int i;
+    char id_materia[4],id_materia_nueva[4];
     printf("Escribe el identificador de la materia la cual quieres modificar en la matricula del alumno");      //se le pide el identificador de materia
-    scanf("%i",&id_materia);
+    fflush(stdin);
+    fgets(id_materia,4,stdin);
+    espacios_desc(id_materia);
     printf("Escribe el identificador de la nueva materia");      //se le pide el identificador de materia
-    scanf("%i",&id_materia_nueva);
+    fflush(stdin);
+    fgets(id_materia_nueva,4,stdin);
+    espacios_desc(id_materia_nueva);
     for(i=0;i<configuration.matriculas_counter;i++){
-        if(id_alum==matricula[i].id_alum && id_materia==matricula[i].id_materia ){
-            matricula[i].id_materia=id_materia_nueva;
+        if(strcmp(id_alum,matricula[i].id_alum)==0 && strcmp(id_materia,matricula[i].id_materia)==0 ){
+            strcpy(matricula[i].id_materia,id_materia_nueva);
         }
     }
+    core_materias_update();
+    core_materias_recovery();
 }
 
 //Cabecera: void eliminar_matricula(int id_alumno)
 //Precondición: Id_alumno inicializado.
 //Postcondición: Se elimina la matricula seleccionada de un alumno concreto.
-void eliminar_matricula(int id_alumno){
-    int i,j,id_materia;
+void eliminar_matricula(char id_alumno[]){
+    int i,j;
+    char id_materia;
     printf("Escribe el identificador de la materia la cual quieres eliminar en la matricula del alumno");   //se le pide el identificador de materia
-    scanf("%i",&id_materia);
+    fflush(stdin);
+    fgets(id_materia,4,stdin);
+    espacios_desc(id_materia);
     for(i=0;i<configuration.matriculas_counter;i++){
-        if(id_materia==matricula[i].id_materia && id_alumno==matricula[i].id_alum){         // reescribe la estructura excepto la que se quiere eliminar
+        if(strcmp(id_materia,matricula[i].id_materia)==0 && strcmp(id_alumno,matricula[i].id_alum)==0){         // reescribe la estructura excepto la que se quiere eliminar
             i++;
         }
         else{
-            matricula[j].id_alum=matricula[i].id_alum;
-            matricula[j].id_materia=matricula[i].materia;
+            strcpy(matricula[j].id_alum,matricula[i].id_alum);
+            strcpy(matricula[j].id_materia,matricula[i].materia);
             j++;
         }
     }
     configuration.matriculas_counter=configuration.matriculas_counter-1;
+    core_materias_update();
+    core_materias_recovery();
 }
+
 
 
 //Cabecera: void crear_matricula(int id_alumno)
 //Precondición: Id_alumno inicializado.
 //Postcondición: Se crea una matricula de un alumno concreto.
-void crear_matricula(int id_alumno){
-    int id_materia;
+void crear_matricula(char id_alumno[]){
+    char id_materia;
     printf("Escribe el identificador de la materia la cual quieres añadir en la matricula del alumno");     //Se le pide el identificador de materia
-    scanf("%i",&id_materia);
-    matricula[configuration.matriculas_counter].id_alum=id_alum;                //Se le asignan los valores
-    matricula[configuration.matriculas_counter].id_materia=id_materia;
+    fflush(stdin);
+    fgets(id_materia,4,stdin);
+    espacios_desc(id_materia);
+    strcpy(matricula[configuration.matriculas_counter].id_alum,id_alum);                //Se le asignan los valores
+    strcpy(matricula[configuration.matriculas_counter].id_materia,id_materia);
     configuration.matriculas_counter++;
+    core_materias_update();
+    core_materias_recovery();
 }
 
 //Cabecera: void añdir_horas(int id_prof)
 //Precondición: Id_prof ya inicializado.
 //Postcondición: Se añade un horario al profesor seleccionado.
-void anadir_horas(int id_prof){
-    horario[configuration.horarios_counter].id_profesor=id_prof;
+void anadir_horas(char id_prof[]){
+    id_prof[3]='\n';
+    espacios_desc(id_prof);
+    strcpy(horario[configuration.horarios_counter].id_profesor,id_prof);
     printf("Escriba el dia de clase\n");                            //Pide el dia de clase
-    scanf("%i",horario[configuration.horarios_counter].dia_clase);  // Lo alamacena en la estructura
+    scanf("%i",&horario[configuration.horarios_counter].dia_clase);  // Lo alamacena en la estructura
+
     printf("Escriba la hora de clase\n");                           //Pide la hora de clase
-    scanf("%i",horario[configuration.horarios_counter].hora_clase); // Lo alamacena en la estructura
+    scanf("%i",&horario[configuration.horarios_counter].hora_clase); // Lo alamacena en la estructura
+
     printf("Escriba el id de materia\n");                           //Pide el id de materia
     fflush(stdin);
     fgets(horario[configuration.horarios_counter].id_materia,4,stdin);// Lo alamacena en la estructura
+    espacios_desc(horario[configuration.horarios_counter].id_materia);
+
     printf("Escriba el curso al que pertenece el alumno\n");        //Pide el curso
     fflush(stdin);
     fgets(horario[configuration.horarios_counter].grupo,10,stdin);  // Lo alamacena en la estructura
+    espacios_desc(horario[configuration.horarios_counter].grupo);
     configuration.horarios_counter++;
+    core_horarios_update();
+    core_horarios_recovery();
 }
+
 
 //Cabecera: void eliminar_horas(int id_prof)
 //Precondición: Id_prof ya inicializado.
 //Postcondición: Se elimina el horario seleccionado del profesor seleccionado.
-void eliminar_horas(int id_prof){
-    int j,dia,hora,id_materia;
-    char grupo[10];
+void eliminar_horas(char id_prof[]){
+    int i,j=0,dia,hora;
+    char grupo[10], id_materia[4];
+    id_prof[3]='\n';
+    espacios_desc(id_prof);
     printf("Escriba el dia de clase que desea eliminar\n");     //pide los datos del horario a eliminar y el usuario los escribe
     scanf("%i",&dia);
     printf("Escriba la hora de clase que desea eliminar\n");
     scanf("%i",&hora);
     printf("Escriba el id de materia que desea eliminar\n");
-    scanf("%i",&id_materia);
+    fflush(stdin);
+    fgets(id_materia,4,stdin);
+    espacios_desc(id_materia);
     printf("Escriba el grupo de la clase que desea eliminar\n");
     fflush(stdin);
     fgets(grupo,10,stdin);
+    espacios_desc(grupo);
 
     for(i=0;i<configuration.horarios_counter;i++){              // reescribe la estructura excepto la que se quiere eliminar
-        if(id_prof==horario[i].id_profesor && dia==horario[i].dia_clase && hora==horario[i].hora_clase && id_materia==horario[i].id_materia && strcmp(grupo,horario[i].grupo)==0){
+        if(strcmp(id_prof,horario[i].id_profesor)==0 && dia==horario[i].dia_clase && hora==horario[i].hora_clase && strcmp(id_materia,horario[i].id_materia)==0 && strcmp(grupo,horario[i].grupo)==0){
             i++;
         }
         else{
-            horario[j].id_profesor=horario[i].id_profesor;
+            strcpy(horario[j].id_profesor,horario[i].id_profesor);
             horario[j].dia_clase=horario[i].dia_clase;
             horario[j].hora_clase=horario[i].hora_clase;
-            horario[j].id_materia=horario[i].id_materia;
+            strcpy(horario[j].id_materia,horario[i].id_materia);
             strcpy(horario[j].grupo,horario[i].grupo);
             j++;
         }
     }
     configuration.horarios_counter=configuration.horarios_counter-1;
+    core_horarios_update();
+    core_horarios_recovery();
 }
 
 //Cabecera: void modificar_horarios(int id_prof)
 //Precondición: Id_prof ya inicializado.
 //Postcondición: Se modifica un campo del horario del profesor seleccionado.
-void modificar_horarios(int id_prof){
-    int elec,dia,hora,id_materia;
-    char grupo[10];
+void modificar_horarios(char id_prof[]){
+    int elec,dia,hora,i;
+    char grupo[10],id_materia[4];
+    id_prof[3]='\n';
+    espacios_desc(id_prof);
     printf("Escriba el dia de clase que desea modificar\n");        //pide los datos del horario a modificar y el usuario los escribe
     scanf("%i",&dia);
     printf("Escriba la hora de clase que desea modificar\n");
     scanf("%i",&hora);
     printf("Escriba el id de materia que desea modificar\n");
-    scanf("%i",&id_materia);
+    fflush(stdin);
+    fgets(id_materia,10,stdin);
+    espacios_desc(id_materia);
     printf("Escriba el grupo de la clase que desea modificar\n");
     fflush(stdin);
     fgets(grupo,10,stdin);
+    espacios_desc(grupo);
     for(i=0;i<configuration.horarios_counter;i++){
-        if(id_prof==horario[i].id_profesor && dia==horario[i].dia_clase && hora==horario[i].hora_clase && id_materia==horario[i].id_materia && strcmp(grupo,horario[i].grupo)==0){
+        if(strcmp(id_prof,horario[i].id_profesor)==0 && dia==horario[i].dia_clase && hora==horario[i].hora_clase && strcmp(id_materia,horario[i].id_materia)==0 && strcmp(grupo,horario[i].grupo)==0){
             printf("Escribe que campo desea modificar\n 1. Dia\n 2.hora\n 3.Id materia\n 4.Grupo\n");       //Selecciona el cambio que quiere cambiar
             scanf("%i",&elec);
             switch(elec){                   //Segun la eleccion cambia un campo o otro
-                case 1:printf("Escriba el nuevo dia\n");scanf("%i",horario[i].dia_clase);break;
-                case 2:printf("Escriba la nueva hora de clase\n");scanf("%i",horario[i].hora_clase);break;
-                case 3:printf("Escriba el nuevo id de materia\n");scanf("%i",horario[i].id_materia);break;
-                case 4: printf("Escriba el nuevo grupo\n"); fflush(stdin); fgets(horario[i].grupo,10,stdin);break;
+                case 1:printf("Escriba el nuevo dia\n");scanf("%i",&horario[i].dia_clase);break;
+                case 2:printf("Escriba la nueva hora de clase\n");scanf("%i",&horario[i].hora_clase);break;
+                case 3:printf("Escriba el nuevo id de materia\n");fflush(stdin);fgets(horario[i].id_materia,4,stdin);espacios_desc(horario[i].id_materia);break;
+                case 4:printf("Escriba el nuevo grupo\n"); fflush(stdin); fgets(horario[i].grupo,10,stdin);espacios_desc(horario[i].grupo);break;
                 default: exit(-1);
             }
         }
     }
+    core_horarios_update();
+    core_horarios_recovery();
 }
 
 
 //Cabecera: void listar_horarios(int id_prof)
 //Precondición: Id_prof ya inicializado.
 //Postcondición: Se listan los horarios del profesor seleccionado.
-void listar_horarios(int id_prof){
+void listar_horarios(char id_prof[]){
     int i;
-    for(i=0;i<configuration.horarios_counter;i++){
-        if(id_prof==horario[i].id_profesor){
-            printf("%s-",horario[i].id_profesor); // Escribe el identificador
-            printf("%i-",horario[i].dia_clase); // Escribe el dia de clase
-            printf("%i-",horario[i].hora_clase); // Escribe la hora de clase
-            printf("%s-",horario[i].id_materia);    //Escribe el id de materia
-            printf("%s\n",horario[i].grupo);        //Escribe el grupo
+    id_prof[3]='\n';
+    espacios_desc(id_prof);
+     for(i=0;i<configuration.horarios_counter;i++){
+            if(strcmp(id_prof,horario[i].id_profesor)==0){
+                printf("%s-",horario[i].id_profesor); // Escribe el identificador
+                printf("%i-",horario[i].dia_clase); // Escribe el dia de clase
+                printf("%i-",horario[i].hora_clase); // Escribe la hora de clase
+                printf("%s-",horario[i].id_materia);    //Escribe el id de materia
+                printf("%s\n",horario[i].grupo);        //Escribe el grupo
+            }
         }
-    }
+}
+
+//Cabecera: espacios_desc(char aux[])
+//Precondición: aux inicializado.
+//Postcondición: Se modifica el contenido de la cadena para eliminar los saltos de linea.
+void espacios_desc(char aux[]){
+    int i;
+      for(i=0;i<50;i++){
+            if(aux[i]=='\n'){
+                aux[i]='\0';
+            }
+        }
 }
